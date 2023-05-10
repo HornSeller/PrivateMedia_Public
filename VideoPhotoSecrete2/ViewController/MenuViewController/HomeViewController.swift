@@ -53,6 +53,23 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 collectionView.collectionViewLayout = layout
     }
     
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            self.performSegue(withIdentifier: "photosSegue", sender: self)
+            break
+        case 1:
+            self.performSegue(withIdentifier: "videosSegue", sender: self)
+            break
+        case 2:
+            self.performSegue(withIdentifier: "audiosSegue", sender: self)
+            break
+        case 3:
+            self.performSegue(withIdentifier: "documentSegue", sender: self)
+            break
+        default:
+            break
+        }
+    }
 
 }

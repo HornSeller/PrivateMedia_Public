@@ -15,6 +15,10 @@
 		9AA45B512A0B3AAE007A2A18 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA45B4F2A0B3AAE007A2A18 /* HomeCollectionViewCell.swift */; };
 		9AA45B522A0B3AAE007A2A18 /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AA45B502A0B3AAE007A2A18 /* HomeCollectionViewCell.xib */; };
 		9AA45B552A0B3C45007A2A18 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA45B542A0B3C45007A2A18 /* HomeViewController.swift */; };
+		9AA45B592A0B4A26007A2A18 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA45B582A0B4A26007A2A18 /* PhotosViewController.swift */; };
+		9AA45B5B2A0B4A2E007A2A18 /* VideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA45B5A2A0B4A2E007A2A18 /* VideosViewController.swift */; };
+		9AA45B5D2A0B4A38007A2A18 /* AudiosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA45B5C2A0B4A38007A2A18 /* AudiosViewController.swift */; };
+		9AA45B5F2A0B4A41007A2A18 /* DocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA45B5E2A0B4A41007A2A18 /* DocumentsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		9AA45B4F2A0B3AAE007A2A18 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		9AA45B502A0B3AAE007A2A18 /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
 		9AA45B542A0B3C45007A2A18 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		9AA45B582A0B4A26007A2A18 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		9AA45B5A2A0B4A2E007A2A18 /* VideosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosViewController.swift; sourceTree = "<group>"; };
+		9AA45B5C2A0B4A38007A2A18 /* AudiosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudiosViewController.swift; sourceTree = "<group>"; };
+		9AA45B5E2A0B4A41007A2A18 /* DocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,9 +92,29 @@
 		9AA45B532A0B3C25007A2A18 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				9AA45B542A0B3C45007A2A18 /* HomeViewController.swift */,
+				9AA45B562A0B49EA007A2A18 /* MenuViewController */,
+				9AA45B572A0B4A04007A2A18 /* SubHomeViewController */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9AA45B562A0B49EA007A2A18 /* MenuViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9AA45B542A0B3C45007A2A18 /* HomeViewController.swift */,
+			);
+			path = MenuViewController;
+			sourceTree = "<group>";
+		};
+		9AA45B572A0B4A04007A2A18 /* SubHomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9AA45B582A0B4A26007A2A18 /* PhotosViewController.swift */,
+				9AA45B5A2A0B4A2E007A2A18 /* VideosViewController.swift */,
+				9AA45B5C2A0B4A38007A2A18 /* AudiosViewController.swift */,
+				9AA45B5E2A0B4A41007A2A18 /* DocumentsViewController.swift */,
+			);
+			path = SubHomeViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,10 +189,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AA45B5B2A0B4A2E007A2A18 /* VideosViewController.swift in Sources */,
+				9AA45B5F2A0B4A41007A2A18 /* DocumentsViewController.swift in Sources */,
 				9AA45B3B2A0B32F8007A2A18 /* AppDelegate.swift in Sources */,
 				9AA45B3D2A0B32F8007A2A18 /* SceneDelegate.swift in Sources */,
 				9AA45B512A0B3AAE007A2A18 /* HomeCollectionViewCell.swift in Sources */,
 				9AA45B552A0B3C45007A2A18 /* HomeViewController.swift in Sources */,
+				9AA45B5D2A0B4A38007A2A18 /* AudiosViewController.swift in Sources */,
+				9AA45B592A0B4A26007A2A18 /* PhotosViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
