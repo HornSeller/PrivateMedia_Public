@@ -9,21 +9,25 @@
 /* Begin PBXBuildFile section */
 		9AA45B3B2A0B32F8007A2A18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA45B3A2A0B32F8007A2A18 /* AppDelegate.swift */; };
 		9AA45B3D2A0B32F8007A2A18 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA45B3C2A0B32F8007A2A18 /* SceneDelegate.swift */; };
-		9AA45B3F2A0B32F8007A2A18 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA45B3E2A0B32F8007A2A18 /* ViewController.swift */; };
 		9AA45B422A0B32F8007A2A18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AA45B402A0B32F8007A2A18 /* Main.storyboard */; };
 		9AA45B442A0B32FA007A2A18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA45B432A0B32FA007A2A18 /* Assets.xcassets */; };
 		9AA45B472A0B32FA007A2A18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AA45B452A0B32FA007A2A18 /* LaunchScreen.storyboard */; };
+		9AA45B512A0B3AAE007A2A18 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA45B4F2A0B3AAE007A2A18 /* HomeCollectionViewCell.swift */; };
+		9AA45B522A0B3AAE007A2A18 /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AA45B502A0B3AAE007A2A18 /* HomeCollectionViewCell.xib */; };
+		9AA45B552A0B3C45007A2A18 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA45B542A0B3C45007A2A18 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9AA45B372A0B32F8007A2A18 /* VideoPhotoSecrete2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoPhotoSecrete2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA45B3A2A0B32F8007A2A18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AA45B3C2A0B32F8007A2A18 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9AA45B3E2A0B32F8007A2A18 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9AA45B412A0B32F8007A2A18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9AA45B432A0B32FA007A2A18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9AA45B462A0B32FA007A2A18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9AA45B482A0B32FA007A2A18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9AA45B4F2A0B3AAE007A2A18 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		9AA45B502A0B3AAE007A2A18 /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
+		9AA45B542A0B3C45007A2A18 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,33 @@
 		9AA45B392A0B32F8007A2A18 /* VideoPhotoSecrete2 */ = {
 			isa = PBXGroup;
 			children = (
+				9AA45B532A0B3C25007A2A18 /* ViewController */,
+				9AA45B4E2A0B3A8C007A2A18 /* CollectionViewCell */,
 				9AA45B3A2A0B32F8007A2A18 /* AppDelegate.swift */,
 				9AA45B3C2A0B32F8007A2A18 /* SceneDelegate.swift */,
-				9AA45B3E2A0B32F8007A2A18 /* ViewController.swift */,
 				9AA45B402A0B32F8007A2A18 /* Main.storyboard */,
 				9AA45B432A0B32FA007A2A18 /* Assets.xcassets */,
 				9AA45B452A0B32FA007A2A18 /* LaunchScreen.storyboard */,
 				9AA45B482A0B32FA007A2A18 /* Info.plist */,
 			);
 			path = VideoPhotoSecrete2;
+			sourceTree = "<group>";
+		};
+		9AA45B4E2A0B3A8C007A2A18 /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				9AA45B4F2A0B3AAE007A2A18 /* HomeCollectionViewCell.swift */,
+				9AA45B502A0B3AAE007A2A18 /* HomeCollectionViewCell.xib */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		9AA45B532A0B3C25007A2A18 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9AA45B542A0B3C45007A2A18 /* HomeViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +150,7 @@
 				9AA45B472A0B32FA007A2A18 /* LaunchScreen.storyboard in Resources */,
 				9AA45B442A0B32FA007A2A18 /* Assets.xcassets in Resources */,
 				9AA45B422A0B32F8007A2A18 /* Main.storyboard in Resources */,
+				9AA45B522A0B3AAE007A2A18 /* HomeCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,9 +161,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AA45B3F2A0B32F8007A2A18 /* ViewController.swift in Sources */,
 				9AA45B3B2A0B32F8007A2A18 /* AppDelegate.swift in Sources */,
 				9AA45B3D2A0B32F8007A2A18 /* SceneDelegate.swift in Sources */,
+				9AA45B512A0B3AAE007A2A18 /* HomeCollectionViewCell.swift in Sources */,
+				9AA45B552A0B3C45007A2A18 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +314,12 @@
 				DEVELOPMENT_TEAM = 2FX323KNBX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VideoPhotoSecrete2/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Use camera to take photos";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Allow network access to play audio";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow access to microphone for recording";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Access to photo library is needed to save videos";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Access photo library to choose photos";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -318,6 +348,12 @@
 				DEVELOPMENT_TEAM = 2FX323KNBX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VideoPhotoSecrete2/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Use camera to take photos";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Allow network access to play audio";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow access to microphone for recording";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Access to photo library is needed to save videos";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Access photo library to choose photos";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
