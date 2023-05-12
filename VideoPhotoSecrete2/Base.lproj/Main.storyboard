@@ -5,10 +5,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Home-->
         <scene sceneID="Nqy-vv-hsc">
             <objects>
                 <viewController id="rX6-1m-QBQ" customClass="HomeViewController" customModule="VideoPhotoSecrete2" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,13 +20,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RFU-ey-XWm">
                                 <rect key="frame" x="0.0" y="59" width="393" height="710"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Ellipse" translatesAutoresizingMaskIntoConstraints="NO" id="CeW-vf-9Da">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Ellipse 1" translatesAutoresizingMaskIntoConstraints="NO" id="CeW-vf-9Da">
                                         <rect key="frame" x="-91" y="-267" width="574" height="539"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Home" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTX-Fw-OF8">
                                         <rect key="frame" x="161" y="0.0" width="71" height="36"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -59,7 +60,7 @@
                             <constraint firstItem="RFU-ey-XWm" firstAttribute="height" secondItem="Qdu-cz-u9R" secondAttribute="height" id="dqP-Ty-awt"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" image="home" landscapeImage="home" largeContentSizeImage="home" selectedImage="home" id="8So-na-ewm">
+                    <tabBarItem key="tabBarItem" title="Home" image="home" landscapeImage="home" largeContentSizeImage="home" selectedImage="home" id="8So-na-ewm">
                         <color key="badgeColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <connections>
@@ -81,8 +82,54 @@
                     <view key="view" contentMode="scaleToFill" id="EIG-sJ-gvs">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2hD-rj-08t">
+                                <rect key="frame" x="0.0" y="44" width="393" height="808"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KZp-iN-HSN">
+                                        <rect key="frame" x="0.0" y="8" width="393" height="632"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ooc-Hr-xUA">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="AmC-4R-3F7" id="0w2-MK-ZMl"/>
+                                            <outlet property="delegate" destination="AmC-4R-3F7" id="1Tp-7L-cCA"/>
+                                        </connections>
+                                    </collectionView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tr4-zc-FDj">
+                                        <rect key="frame" x="0.0" y="637" width="393" height="171"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYb-F1-JDX">
+                                                <rect key="frame" x="162" y="51" width="68" height="68"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="elip"/>
+                                                <connections>
+                                                    <action selector="createAlbumBtnTapped:" destination="AmC-4R-3F7" eventType="touchUpInside" id="OMN-3Y-Qk3"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="i4e-3j-pPO"/>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="2hD-rj-08t" firstAttribute="centerY" secondItem="i4e-3j-pPO" secondAttribute="centerY" id="2Nk-e8-6xn"/>
+                            <constraint firstItem="2hD-rj-08t" firstAttribute="width" secondItem="i4e-3j-pPO" secondAttribute="width" id="5Fz-Pd-jEh"/>
+                            <constraint firstItem="2hD-rj-08t" firstAttribute="height" secondItem="i4e-3j-pPO" secondAttribute="height" id="Fcg-LF-MIY"/>
+                            <constraint firstItem="2hD-rj-08t" firstAttribute="centerX" secondItem="i4e-3j-pPO" secondAttribute="centerX" id="vSu-lB-cVs"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Photos" id="wlr-Hv-TuS">
                         <barButtonItem key="leftBarButtonItem" image="chevron.down" catalog="system" style="plain" id="veI-KI-Y60">
@@ -92,10 +139,112 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="KZp-iN-HSN" id="K6q-nU-Gde"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aN2-1s-GdD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3277.0992366412211" y="2121.1267605633802"/>
+        </scene>
+        <!--Sub Photos View Controller-->
+        <scene sceneID="Hvk-gK-heu">
+            <objects>
+                <viewController storyboardIdentifier="SubPhotosViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0MJ-kB-Vx6" customClass="SubPhotosViewController" customModule="VideoPhotoSecrete2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sDi-Ik-rSX">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vev-Ic-8EH">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yDT-UK-TgA">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="661"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BZx-71-cOF">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="myCell" id="gth-qN-80Y" customClass="SubPhotosCollectionViewCell" customModule="VideoPhotoSecrete2" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="2Ga-at-c7x">
+                                                    <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OUc-jW-vxL">
+                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="OUc-jW-vxL" secondAttribute="height" multiplier="1:1" id="s25-7N-gwv"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="OUc-jW-vxL" firstAttribute="centerY" secondItem="2Ga-at-c7x" secondAttribute="centerY" id="Jjd-xN-JGC"/>
+                                                        <constraint firstItem="OUc-jW-vxL" firstAttribute="height" secondItem="2Ga-at-c7x" secondAttribute="height" id="LhA-Ga-BNR"/>
+                                                        <constraint firstItem="OUc-jW-vxL" firstAttribute="centerX" secondItem="2Ga-at-c7x" secondAttribute="centerX" id="Z9u-B7-Fmo"/>
+                                                        <constraint firstItem="OUc-jW-vxL" firstAttribute="width" secondItem="2Ga-at-c7x" secondAttribute="width" id="gdZ-1X-UqA"/>
+                                                    </constraints>
+                                                </collectionViewCellContentView>
+                                                <connections>
+                                                    <outlet property="imageView" destination="OUc-jW-vxL" id="Umo-Gm-wya"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="0MJ-kB-Vx6" id="F8B-9T-vns"/>
+                                            <outlet property="delegate" destination="0MJ-kB-Vx6" id="ufT-OF-6aP"/>
+                                        </connections>
+                                    </collectionView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DGD-tL-BWN">
+                                        <rect key="frame" x="0.0" y="657" width="393" height="135"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yQP-rH-dIr">
+                                                <rect key="frame" x="227" y="0.0" width="81" height="85"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="camera"/>
+                                                <connections>
+                                                    <action selector="takePicBtnTapped:" destination="0MJ-kB-Vx6" eventType="touchUpInside" id="kzb-ee-MhT"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mch-90-yWT">
+                                                <rect key="frame" x="90" y="0.0" width="79" height="85"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="gallery"/>
+                                                <connections>
+                                                    <action selector="addFromGalleryBtnTapped:" destination="0MJ-kB-Vx6" eventType="touchUpInside" id="GjC-YH-kOM"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jJY-JW-nBG"/>
+                        <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="vev-Ic-8EH" firstAttribute="centerY" secondItem="jJY-JW-nBG" secondAttribute="centerY" id="Auk-gg-fJc"/>
+                            <constraint firstItem="vev-Ic-8EH" firstAttribute="centerX" secondItem="jJY-JW-nBG" secondAttribute="centerX" id="KvD-rd-7sd"/>
+                            <constraint firstItem="vev-Ic-8EH" firstAttribute="width" secondItem="jJY-JW-nBG" secondAttribute="width" id="N3D-oD-Npe"/>
+                            <constraint firstItem="vev-Ic-8EH" firstAttribute="height" secondItem="jJY-JW-nBG" secondAttribute="height" id="bca-KD-Mv5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="yDT-UK-TgA" id="UnI-yj-Vgr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2cS-FX-PK2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3277.0992366412211" y="2940.8450704225352"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="blc-zX-irV">
@@ -120,7 +269,7 @@
             </objects>
             <point key="canvasLocation" x="773" y="-396"/>
         </scene>
-        <!--Item-->
+        <!--Setting-->
         <scene sceneID="OJq-D7-hC6">
             <objects>
                 <viewController id="LJM-kn-wI9" sceneMemberID="viewController">
@@ -130,7 +279,7 @@
                         <viewLayoutGuide key="safeArea" id="1to-Yb-7W8"/>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" image="setting" landscapeImage="setting" largeContentSizeImage="setting" selectedImage="setting" id="Umc-0r-JcG">
+                    <tabBarItem key="tabBarItem" title="Setting" image="setting" landscapeImage="setting" largeContentSizeImage="setting" selectedImage="setting" id="Umc-0r-JcG">
                         <color key="badgeColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     </tabBarItem>
                 </viewController>
@@ -138,7 +287,7 @@
             </objects>
             <point key="canvasLocation" x="248" y="642"/>
         </scene>
-        <!--Item-->
+        <!--More-->
         <scene sceneID="Mdv-5s-9pr">
             <objects>
                 <viewController id="oYG-xR-C9Q" sceneMemberID="viewController">
@@ -148,7 +297,7 @@
                         <viewLayoutGuide key="safeArea" id="hck-dt-sjJ"/>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" image="more" landscapeImage="more" largeContentSizeImage="more" selectedImage="more" id="2tU-Gu-VzU">
+                    <tabBarItem key="tabBarItem" title="More" image="more" landscapeImage="more" largeContentSizeImage="more" selectedImage="more" id="2tU-Gu-VzU">
                         <color key="badgeColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                 </viewController>
@@ -156,7 +305,7 @@
             </objects>
             <point key="canvasLocation" x="1115" y="642"/>
         </scene>
-        <!--Item-->
+        <!--Cloud-->
         <scene sceneID="7Lv-02-mgs">
             <objects>
                 <viewController id="Fty-Zk-58y" sceneMemberID="viewController">
@@ -166,7 +315,7 @@
                         <viewLayoutGuide key="safeArea" id="7qz-iR-rU4"/>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" image="cloud" landscapeImage="cloud" largeContentSizeImage="cloud" selectedImage="cloud" id="mBB-J3-13a">
+                    <tabBarItem key="tabBarItem" title="Cloud" image="cloud" landscapeImage="cloud" largeContentSizeImage="cloud" selectedImage="cloud" id="mBB-J3-13a">
                         <color key="badgeColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                 </viewController>
@@ -201,7 +350,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="qQY-tx-dbE"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="w7V-AB-cad">
                         <barButtonItem key="leftBarButtonItem" image="chevron.down" catalog="system" style="plain" id="gd1-YT-NyS"/>
@@ -303,10 +452,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Ellipse" width="390" height="275"/>
+        <image name="Ellipse 1" width="780" height="550"/>
+        <image name="camera" width="70" height="70"/>
         <image name="chevron.down" catalog="system" width="128" height="70"/>
         <image name="cloud" width="22" height="17"/>
-        <image name="home" width="18" height="20"/>
+        <image name="elip" width="125" height="125"/>
+        <image name="gallery" width="70" height="70"/>
+        <image name="home" width="18" height="19.5"/>
         <image name="more" width="20" height="20"/>
         <image name="setting" width="22" height="22"/>
         <systemColor name="systemBackgroundColor">

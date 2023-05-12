@@ -10,7 +10,7 @@ import UIKit
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     let titleCell = ["Photos", "Videos", "Audios", "Documents"]
-    let imageCell = ["elipse-2", "elipse", "elipse-3", "elipse-4"]
+    let imageCell = ["elipse", "elipse-2", "elipse-3", "elipse-4"]
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         titleCell.count
     }
@@ -27,6 +27,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 //        cell.layer.shadowOpacity = 0.3 // Độ đậm của đổ bóng cell
 //        cell.layer.shadowRadius = 2.5 // Độ cong của đổ bóng cell
         cell.backgroundColor = .black
+        cell.alpha = 0.9
         return cell
     }
     
@@ -38,19 +39,22 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         collectionView.register(UINib(nibName: "HomeCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "myCell")
                 
                 
-                let margin: CGFloat = 13
-                            let layout = UICollectionViewFlowLayout()
-                            layout.scrollDirection = .vertical
-                            layout.minimumLineSpacing = margin
-                            layout.minimumInteritemSpacing = margin
-                            var sizeCell = (view.frame.size.width - 3 * margin) / 2 - 2
-                            if UIDevice.current.userInterfaceIdiom == .pad {
-                                sizeCell = (view.frame.size.width - 3 * margin) / 2 - 2
-                            }
+        let margin: CGFloat = 13
+        var marginTop: CGFloat = 13
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = margin
+        layout.minimumInteritemSpacing = margin
+        var sizeCell = (view.frame.size.width - 3 * margin) / 2 - 2
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            sizeCell = (view.frame.size.width - 5 * margin) / 4 - 2
+            marginTop = 150
+            layout.sectionInset = UIEdgeInsets.init(top: marginTop, left: margin, bottom: margin, right: margin)
+        }
                             
-                            layout.itemSize = CGSize(width: sizeCell, height: sizeCell)
-                            layout.sectionInset = UIEdgeInsets.init(top: margin, left: margin, bottom: margin, right: margin)
-                collectionView.collectionViewLayout = layout
+        layout.itemSize = CGSize(width: sizeCell, height: sizeCell)
+        layout.sectionInset = UIEdgeInsets.init(top: marginTop, left: margin, bottom: margin, right: margin)
+        collectionView.collectionViewLayout = layout
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
