@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m0K-N8-lkk">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -14,25 +14,25 @@
             <objects>
                 <viewController id="rX6-1m-QBQ" customClass="HomeViewController" customModule="VideoPhotoSecrete2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sas-XA-lmk">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RFU-ey-XWm">
-                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                                <rect key="frame" x="0.0" y="50" width="375" height="679"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Ellipse 1" translatesAutoresizingMaskIntoConstraints="NO" id="CeW-vf-9Da">
-                                        <rect key="frame" x="-91" y="-267" width="574" height="539"/>
+                                        <rect key="frame" x="-87" y="-255" width="548" height="515"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Home" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTX-Fw-OF8">
-                                        <rect key="frame" x="161" y="0.0" width="71" height="36"/>
+                                        <rect key="frame" x="154" y="0.0" width="67" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0cb-6U-Z25">
-                                        <rect key="frame" x="0.0" y="123" width="393" height="429"/>
+                                        <rect key="frame" x="0.0" y="118" width="375" height="410"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="TDB-oa-llH">
@@ -66,7 +66,7 @@
                     <connections>
                         <outlet property="collectionView" destination="0cb-6U-Z25" id="lEM-PX-eYb"/>
                         <segue destination="8vm-Ic-qm5" kind="presentation" identifier="photosSegue" modalPresentationStyle="fullScreen" id="b24-YV-VT0"/>
-                        <segue destination="YI0-kd-we6" kind="presentation" modalPresentationStyle="fullScreen" id="sQD-Ys-WOW"/>
+                        <segue destination="YI0-kd-we6" kind="presentation" identifier="videosSegue" modalPresentationStyle="fullScreen" id="sQD-Ys-WOW"/>
                         <segue destination="vhj-9f-rhE" kind="presentation" modalPresentationStyle="fullScreen" id="gb7-1N-RA5"/>
                         <segue destination="HDh-Iz-qNs" kind="presentation" modalPresentationStyle="fullScreen" id="cwu-0J-B79"/>
                     </connections>
@@ -80,16 +80,16 @@
             <objects>
                 <viewController id="AmC-4R-3F7" customClass="PhotosViewController" customModule="VideoPhotoSecrete2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EIG-sJ-gvs">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2hD-rj-08t">
-                                <rect key="frame" x="0.0" y="44" width="393" height="808"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KZp-iN-HSN">
-                                        <rect key="frame" x="0.0" y="8" width="393" height="632"/>
+                                        <rect key="frame" x="0.0" y="8" width="375" height="600"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ooc-Hr-xUA">
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -103,11 +103,11 @@
                                         </connections>
                                     </collectionView>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tr4-zc-FDj">
-                                        <rect key="frame" x="0.0" y="637" width="393" height="171"/>
+                                        <rect key="frame" x="0.0" y="605" width="375" height="163"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYb-F1-JDX">
-                                                <rect key="frame" x="162" y="51" width="68" height="68"/>
+                                                <rect key="frame" x="154" y="46" width="66" height="66"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="elip"/>
@@ -152,14 +152,14 @@
             <objects>
                 <viewController storyboardIdentifier="SubPhotosViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0MJ-kB-Vx6" customClass="SubPhotosViewController" customModule="VideoPhotoSecrete2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sDi-Ik-rSX">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vev-Ic-8EH">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="50" width="375" height="728"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yDT-UK-TgA">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="661"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="634"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BZx-71-cOF">
@@ -170,10 +170,10 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="myCell" id="gth-qN-80Y" customClass="SubPhotosCollectionViewCell" customModule="VideoPhotoSecrete2" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="2Ga-at-c7x">
-                                                    <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OUc-jW-vxL">
@@ -201,11 +201,11 @@
                                         </connections>
                                     </collectionView>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DGD-tL-BWN">
-                                        <rect key="frame" x="0.0" y="657" width="393" height="135"/>
+                                        <rect key="frame" x="0.0" y="631" width="375" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yQP-rH-dIr">
-                                                <rect key="frame" x="227" y="0.0" width="81" height="85"/>
+                                                <rect key="frame" x="217" y="0.0" width="77" height="82"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="camera"/>
@@ -214,7 +214,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mch-90-yWT">
-                                                <rect key="frame" x="90" y="0.0" width="79" height="85"/>
+                                                <rect key="frame" x="86" y="0.0" width="75" height="82"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="gallery"/>
@@ -246,6 +246,73 @@
             </objects>
             <point key="canvasLocation" x="-3277.0992366412211" y="2940.8450704225352"/>
         </scene>
+        <!--Sub Videos View Controller-->
+        <scene sceneID="B7b-3u-sNN">
+            <objects>
+                <viewController storyboardIdentifier="SubVideosViewController" id="rJO-Fj-CXG" customClass="SubVideosViewController" customModule="VideoPhotoSecrete2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WzN-Le-RW9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lk5-5L-KCv">
+                                <rect key="frame" x="0.0" y="50" width="375" height="728"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hh7-uE-w27">
+                                        <rect key="frame" x="0.0" y="8" width="375" height="636"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hp7-oh-R75">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="rJO-Fj-CXG" id="4J3-cO-c1N"/>
+                                            <outlet property="delegate" destination="rJO-Fj-CXG" id="rAw-dB-31M"/>
+                                        </connections>
+                                    </collectionView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AmS-r4-sDs">
+                                        <rect key="frame" x="0.0" y="639" width="375" height="123"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qDu-Hg-emZ">
+                                                <rect key="frame" x="88" y="0.0" width="75" height="82"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="gallery"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgw-JY-0ug">
+                                                <rect key="frame" x="220" y="0.0" width="75" height="82"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="camera"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rmm-5s-tBN"/>
+                        <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="lk5-5L-KCv" firstAttribute="width" secondItem="rmm-5s-tBN" secondAttribute="width" id="PHT-fF-AIE"/>
+                            <constraint firstItem="lk5-5L-KCv" firstAttribute="centerX" secondItem="rmm-5s-tBN" secondAttribute="centerX" id="f4U-Mc-FiQ"/>
+                            <constraint firstItem="lk5-5L-KCv" firstAttribute="height" secondItem="rmm-5s-tBN" secondAttribute="height" id="nQh-8H-Q8h"/>
+                            <constraint firstItem="lk5-5L-KCv" firstAttribute="centerY" secondItem="rmm-5s-tBN" secondAttribute="centerY" id="zUX-8r-tUL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="hh7-uE-w27" id="d8i-5m-YEd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iIn-kP-PJY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2450.4000000000001" y="2938.6699507389162"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="blc-zX-irV">
             <objects>
@@ -274,7 +341,7 @@
             <objects>
                 <viewController id="LJM-kn-wI9" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jPo-Gp-OcW">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="1to-Yb-7W8"/>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -292,7 +359,7 @@
             <objects>
                 <viewController id="oYG-xR-C9Q" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gsV-Mx-6ZM">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="hck-dt-sjJ"/>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -310,7 +377,7 @@
             <objects>
                 <viewController id="Fty-Zk-58y" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yOq-OD-3MP">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="7qz-iR-rU4"/>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -330,7 +397,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="JMN-OD-hWe"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uM0-AE-1xZ">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -342,23 +409,63 @@
             </objects>
             <point key="canvasLocation" x="-3276" y="1361"/>
         </scene>
-        <!--Videos View Controller-->
+        <!--Videos-->
         <scene sceneID="uJQ-mH-5uK">
             <objects>
                 <viewController id="HeK-Ko-Gkb" customClass="VideosViewController" customModule="VideoPhotoSecrete2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o4x-Qo-bfV">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EpJ-lw-Nfg">
+                                <rect key="frame" x="0.0" y="54" width="375" height="748"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZG-NB-tAq">
+                                        <rect key="frame" x="109" y="50" width="157" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="album"/>
+                                        <connections>
+                                            <action selector="createAlbumBtnTapped:" destination="HeK-Ko-Gkb" eventType="touchUpInside" id="ODD-dG-2bb"/>
+                                        </connections>
+                                    </button>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SeW-DK-zve">
+                                        <rect key="frame" x="0.0" y="108" width="375" height="632"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="HeK-Ko-Gkb" id="fJI-Mk-T7k"/>
+                                            <outlet property="delegate" destination="HeK-Ko-Gkb" id="7yW-Pl-jru"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="qQY-tx-dbE"/>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="EpJ-lw-Nfg" firstAttribute="centerX" secondItem="qQY-tx-dbE" secondAttribute="centerX" id="Rp8-aj-azU"/>
+                            <constraint firstItem="EpJ-lw-Nfg" firstAttribute="height" secondItem="qQY-tx-dbE" secondAttribute="height" multiplier="0.973958" id="pLs-Kt-biN"/>
+                            <constraint firstItem="EpJ-lw-Nfg" firstAttribute="width" secondItem="qQY-tx-dbE" secondAttribute="width" id="pal-JW-e84"/>
+                            <constraint firstItem="EpJ-lw-Nfg" firstAttribute="centerY" secondItem="qQY-tx-dbE" secondAttribute="centerY" id="sUX-64-bgN"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="w7V-AB-cad">
-                        <barButtonItem key="leftBarButtonItem" image="chevron.down" catalog="system" style="plain" id="gd1-YT-NyS"/>
+                    <navigationItem key="navigationItem" title="Videos" id="w7V-AB-cad">
+                        <barButtonItem key="leftBarButtonItem" image="chevron.down" catalog="system" style="plain" id="gd1-YT-NyS">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="backBtnTapped:" destination="HeK-Ko-Gkb" id="An2-2s-RKX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="SeW-DK-zve" id="xCd-fF-te1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tH1-Yt-qFH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2450" y="2123"/>
+            <point key="canvasLocation" x="-2450.4000000000001" y="2122.9064039408868"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Cmc-Jp-nqd">
@@ -366,7 +473,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YI0-kd-we6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Nlx-mx-xrg">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -383,7 +490,7 @@
             <objects>
                 <viewController id="QbZ-Dk-Rjz" customClass="AudiosViewController" customModule="VideoPhotoSecrete2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z0J-5L-PsU">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="TTG-iG-o1r"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -402,7 +509,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vhj-9f-rhE" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3aK-AC-IDd">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -419,7 +526,7 @@
             <objects>
                 <viewController id="5jW-kj-E2T" customClass="DocumentsViewController" customModule="VideoPhotoSecrete2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HSw-kJ-0wk">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="AaB-lB-pYT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -438,7 +545,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HDh-Iz-qNs" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4wu-mt-p45">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -453,6 +560,7 @@
     </scenes>
     <resources>
         <image name="Ellipse 1" width="780" height="550"/>
+        <image name="album" width="157" height="28"/>
         <image name="camera" width="70" height="70"/>
         <image name="chevron.down" catalog="system" width="128" height="70"/>
         <image name="cloud" width="22" height="17"/>

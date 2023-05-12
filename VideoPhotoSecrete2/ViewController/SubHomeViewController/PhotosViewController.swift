@@ -35,8 +35,8 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
                 fileList.sort { (lhs: String, rhs: String) -> Bool in
                     return lhs < rhs
                 }
-                let firstImage = albumUrl.appendingPathComponent(fileList[0])
-                cell.imageView.image = UIImage(contentsOfFile: firstImage.path)
+                let lastImage = albumUrl.appendingPathComponent(fileList[fileList.count - 1])
+                cell.imageView.image = UIImage(contentsOfFile: lastImage.path)
             }
         } catch {
             print(error.localizedDescription)
@@ -156,5 +156,4 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         self.present(alert, animated: true)
     }
-    
 }

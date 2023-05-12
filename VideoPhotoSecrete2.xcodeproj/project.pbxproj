@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A980EB52A0DEF9900770531 /* VideosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A980EB32A0DEF9900770531 /* VideosTableViewCell.swift */; };
+		9A980EB62A0DEF9900770531 /* VideosTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A980EB42A0DEF9900770531 /* VideosTableViewCell.xib */; };
+		9A980EB82A0E279F00770531 /* SubVideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A980EB72A0E279F00770531 /* SubVideosViewController.swift */; };
+		9A980EBB2A0E295900770531 /* SubVideosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A980EB92A0E295900770531 /* SubVideosCollectionViewCell.swift */; };
+		9A980EBC2A0E295900770531 /* SubVideosCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A980EBA2A0E295900770531 /* SubVideosCollectionViewCell.xib */; };
 		9A9E5EC82A0C8F2C008CBAD9 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E5EC62A0C8F2C008CBAD9 /* PhotosCollectionViewCell.swift */; };
 		9A9E5EC92A0C8F2C008CBAD9 /* PhotosCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9E5EC72A0C8F2C008CBAD9 /* PhotosCollectionViewCell.xib */; };
 		9A9E5ECC2A0CAB1F008CBAD9 /* SubPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E5ECB2A0CAB1F008CBAD9 /* SubPhotosViewController.swift */; };
@@ -26,6 +31,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A980EB32A0DEF9900770531 /* VideosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosTableViewCell.swift; sourceTree = "<group>"; };
+		9A980EB42A0DEF9900770531 /* VideosTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideosTableViewCell.xib; sourceTree = "<group>"; };
+		9A980EB72A0E279F00770531 /* SubVideosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubVideosViewController.swift; sourceTree = "<group>"; };
+		9A980EB92A0E295900770531 /* SubVideosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubVideosCollectionViewCell.swift; sourceTree = "<group>"; };
+		9A980EBA2A0E295900770531 /* SubVideosCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubVideosCollectionViewCell.xib; sourceTree = "<group>"; };
 		9A9E5EC62A0C8F2C008CBAD9 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		9A9E5EC72A0C8F2C008CBAD9 /* PhotosCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotosCollectionViewCell.xib; sourceTree = "<group>"; };
 		9A9E5ECB2A0CAB1F008CBAD9 /* SubPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubPhotosViewController.swift; sourceTree = "<group>"; };
@@ -57,10 +67,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A980EB22A0DEF6900770531 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				9A980EB32A0DEF9900770531 /* VideosTableViewCell.swift */,
+				9A980EB42A0DEF9900770531 /* VideosTableViewCell.xib */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
 		9A9E5ECA2A0CAAE4008CBAD9 /* SuperSubViewController */ = {
 			isa = PBXGroup;
 			children = (
 				9A9E5ECB2A0CAB1F008CBAD9 /* SubPhotosViewController.swift */,
+				9A980EB72A0E279F00770531 /* SubVideosViewController.swift */,
 			);
 			path = SuperSubViewController;
 			sourceTree = "<group>";
@@ -86,6 +106,7 @@
 			children = (
 				9AA45B532A0B3C25007A2A18 /* ViewController */,
 				9AA45B4E2A0B3A8C007A2A18 /* CollectionViewCell */,
+				9A980EB22A0DEF6900770531 /* TableViewCell */,
 				9AA45B3A2A0B32F8007A2A18 /* AppDelegate.swift */,
 				9AA45B3C2A0B32F8007A2A18 /* SceneDelegate.swift */,
 				9AA45B402A0B32F8007A2A18 /* Main.storyboard */,
@@ -104,6 +125,8 @@
 				9A9E5EC62A0C8F2C008CBAD9 /* PhotosCollectionViewCell.swift */,
 				9A9E5EC72A0C8F2C008CBAD9 /* PhotosCollectionViewCell.xib */,
 				9A9E5ECD2A0CCE99008CBAD9 /* SubPhotosCollectionViewCell.swift */,
+				9A980EB92A0E295900770531 /* SubVideosCollectionViewCell.swift */,
+				9A980EBA2A0E295900770531 /* SubVideosCollectionViewCell.xib */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -198,6 +221,8 @@
 				9AA45B472A0B32FA007A2A18 /* LaunchScreen.storyboard in Resources */,
 				9A9E5EC92A0C8F2C008CBAD9 /* PhotosCollectionViewCell.xib in Resources */,
 				9AA45B442A0B32FA007A2A18 /* Assets.xcassets in Resources */,
+				9A980EB62A0DEF9900770531 /* VideosTableViewCell.xib in Resources */,
+				9A980EBC2A0E295900770531 /* SubVideosCollectionViewCell.xib in Resources */,
 				9AA45B422A0B32F8007A2A18 /* Main.storyboard in Resources */,
 				9AA45B522A0B3AAE007A2A18 /* HomeCollectionViewCell.xib in Resources */,
 			);
@@ -211,6 +236,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A9E5ECC2A0CAB1F008CBAD9 /* SubPhotosViewController.swift in Sources */,
+				9A980EB82A0E279F00770531 /* SubVideosViewController.swift in Sources */,
+				9A980EB52A0DEF9900770531 /* VideosTableViewCell.swift in Sources */,
 				9AA45B5B2A0B4A2E007A2A18 /* VideosViewController.swift in Sources */,
 				9AA45B5F2A0B4A41007A2A18 /* DocumentsViewController.swift in Sources */,
 				9A9E5EC82A0C8F2C008CBAD9 /* PhotosCollectionViewCell.swift in Sources */,
@@ -221,6 +248,7 @@
 				9AA45B5D2A0B4A38007A2A18 /* AudiosViewController.swift in Sources */,
 				9A9E5ECE2A0CCE99008CBAD9 /* SubPhotosCollectionViewCell.swift in Sources */,
 				9AA45B592A0B4A26007A2A18 /* PhotosViewController.swift in Sources */,
+				9A980EBB2A0E295900770531 /* SubVideosCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

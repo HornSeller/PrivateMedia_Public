@@ -45,7 +45,6 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
                             } catch {
                                 print(error.localizedDescription)
                             }
-                            //print(name)
                         }
                         count += 1
                     }
@@ -76,30 +75,6 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
         
         let imageName = photosName[indexPath.row]
         cell.imageView.image = UIImage(contentsOfFile: (albumUrl?.appendingPathComponent(imageName).path)!)
-//        let documentsDirectory = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-//        let photosURL = documentsDirectory.appendingPathComponent("Photos")
-//        let photosDirectory = photosURL.appendingPathComponent(name)
-//        do {
-//            let photoFiles = try fileManager.contentsOfDirectory(atPath: photosDirectory.path)
-////            let photoFiles = try
-////            fileManager.contentsOfDirectory(at: photosDirectory,
-////                      includingPropertiesForKeys:[.contentModificationDateKey],
-////                      options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
-////                   .filter { $0.lastPathComponent.hasSuffix(".swift") }
-////                   .sorted(by: {
-////                       let date0 = try $0.promisedItemResourceValues(forKeys:[.contentModificationDateKey]).contentModificationDate!
-////                       let date1 = try $1.promisedItemResourceValues(forKeys:[.contentModificationDateKey]).contentModificationDate!
-////                       return date0.compare(date1) == .orderedDescending
-////                    })
-//            print(photoFiles)
-//            let imageName = photoFiles[indexPath.row]
-//            let imageURL = photosDirectory.appendingPathComponent(imageName)
-//            let image = UIImage(contentsOfFile: imageURL.path)
-//            cell.imageView.image = image
-//            // Lưu danh sách các tệp ảnh vào một mảng
-//        } catch {
-//            print("Error: \(error.localizedDescription)")
-//        }
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         cell.addGestureRecognizer(longPressRecognizer)
         return cell
@@ -115,7 +90,6 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
             self.photosName.sort { (lhs: String, rhs: String) -> Bool in
                 return lhs < rhs
             }
-            print(self.photosName)
             // Lưu danh sách các tệp ảnh vào một mảng
         } catch {
             print("Error: \(error.localizedDescription)")
@@ -161,27 +135,13 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
                 // TODO: Handle delete action
                 if let indexPath = self.collectionView.indexPath(for: cell) {
-                    print(indexPath)
-                    let documentsDirectory = try! self.fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-                    let photosURL = documentsDirectory.appendingPathComponent("Photos")
-                    let photosDirectory = photosURL.appendingPathComponent(self.name)
+                    let photoURL = self.albumUrl?.appendingPathComponent(self.photosName[indexPath.row])
                     do {
-                        let directoryContents = try self.fileManager.contentsOfDirectory(atPath: photosDirectory.path)
-                        print(directoryContents)
-                        // tạo một mảng chứa thông tin về các video
-
-                        let photoName = directoryContents[indexPath.row]
-                        let photoURL = photosDirectory.appendingPathComponent(photoName)
-                        print(photoURL)
-                        do {
-                            try self.fileManager.removeItem(at: photoURL)
-                            self.updatePhotosName()
-                            self.collectionView.reloadData()
-                        } catch {
-                            print("Error deleting video: \(error)")
-                        }
+                        try self.fileManager.removeItem(at: photoURL!)
+                        self.updatePhotosName()
+                        self.collectionView.reloadData()
                     } catch {
-                        print(error.localizedDescription)
+                        print("Error deleting video: \(error)")
                     }
 
                 }
