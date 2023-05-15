@@ -69,7 +69,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             self.performSegue(withIdentifier: "audiosSegue", sender: self)
             break
         case 3:
-            self.performSegue(withIdentifier: "documentSegue", sender: self)
+            self.performSegue(withIdentifier: "documentsSegue", sender: self)
             break
         default:
             break

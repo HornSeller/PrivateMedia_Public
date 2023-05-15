@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!

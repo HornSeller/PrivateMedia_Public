@@ -92,6 +92,11 @@ class VideosViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     @IBAction func backBtnTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }

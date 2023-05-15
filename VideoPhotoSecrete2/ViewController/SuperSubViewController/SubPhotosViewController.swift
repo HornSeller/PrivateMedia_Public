@@ -7,6 +7,7 @@
 
 import UIKit
 import PhotosUI
+import Kingfisher
 
 class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
@@ -74,17 +75,40 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath) as! SubPhotosCollectionViewCell
         
         let imageName = photosName[indexPath.row]
-        cell.imageView.image = UIImage(contentsOfFile: (albumUrl?.appendingPathComponent(imageName).path)!)
+        cell.imageView.kf.setImage(with: albumUrl?.appendingPathComponent(imageName))
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         cell.addGestureRecognizer(longPressRecognizer)
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let imageName = photosName[indexPath.row]
+        let imageURL = albumUrl!.appendingPathComponent(imageName)
+        guard let image = UIImage(contentsOfFile: imageURL.path) else {
+            return
+        }
+        self.navigationController?.pushViewController(ShowImageViewController.cellTapped(image: image, imageName: imageName, fileName: self.title!), animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            // Lấy ảnh được chọn
+            guard let image = info[.originalImage] as? UIImage else {
+                picker.dismiss(animated: true, completion: nil)
+                return
+            }
+            
+            saveImage(image: image)
+            
+            picker.dismiss(animated: true, completion: nil)
+            collectionView.reloadData()
+        }
     
     func updatePhotosName() {
         let documentsDirectory = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         let photosURL = documentsDirectory.appendingPathComponent("Photos")
         let photosDirectory = photosURL.appendingPathComponent(name)
         albumUrl = photosDirectory
+        print(albumUrl)
         do {
             self.photosName = try fileManager.contentsOfDirectory(atPath: photosDirectory.path)
             self.photosName.sort { (lhs: String, rhs: String) -> Bool in
@@ -156,7 +180,7 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
     
     @IBAction func addFromGalleryBtnTapped(_ sender: UIButton) {
         var config = PHPickerConfiguration()
-        config.selectionLimit = 100
+        config.selectionLimit = 0
         config.filter = .images
         
         let picker = PHPickerViewController(configuration: config)
@@ -169,6 +193,22 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
         imagePickerController.delegate = self
         present(imagePickerController, animated: true)
     }
+    
+    func saveImage(image: UIImage) {
+            // Lưu ảnh vào thư mục Documents của ứng dụng
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyyMMddHHmmss"
+            let imageNameDate = "\(formatter.string(from: Date()))_image.jpg"
+            
+            fileManager = FileManager.default
+            let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let photosDirectory = documentsURL.appendingPathComponent("Photos")
+            let fileURL = photosDirectory.appendingPathComponent(name)
+            let photoURL = fileURL.appendingPathComponent(imageNameDate)
+            if let imageData = image.jpegData(compressionQuality: 1.0) {
+                try? imageData.write(to: photoURL)
+            }
+        }
     
     static func makeSelf(name: String) -> SubPhotosViewController {
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

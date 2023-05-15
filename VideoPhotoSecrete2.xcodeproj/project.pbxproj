@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		690D7631CCC3822F0A78ED81 /* Pods_VideoPhotoSecrete2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D909E254CFB5B2A3C6B5E2 /* Pods_VideoPhotoSecrete2.framework */; };
+		9A95FD752A120A6700E22030 /* ShowImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A95FD742A120A6700E22030 /* ShowImageViewController.swift */; };
 		9A980EB52A0DEF9900770531 /* VideosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A980EB32A0DEF9900770531 /* VideosTableViewCell.swift */; };
 		9A980EB62A0DEF9900770531 /* VideosTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A980EB42A0DEF9900770531 /* VideosTableViewCell.xib */; };
 		9A980EB82A0E279F00770531 /* SubVideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A980EB72A0E279F00770531 /* SubVideosViewController.swift */; };
@@ -31,6 +33,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02D909E254CFB5B2A3C6B5E2 /* Pods_VideoPhotoSecrete2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VideoPhotoSecrete2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2253D9B9DC5BC7D17E7D38C0 /* Pods-VideoPhotoSecrete2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoPhotoSecrete2.debug.xcconfig"; path = "Target Support Files/Pods-VideoPhotoSecrete2/Pods-VideoPhotoSecrete2.debug.xcconfig"; sourceTree = "<group>"; };
+		90611CC99802F44CD8B34E32 /* Pods-VideoPhotoSecrete2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoPhotoSecrete2.release.xcconfig"; path = "Target Support Files/Pods-VideoPhotoSecrete2/Pods-VideoPhotoSecrete2.release.xcconfig"; sourceTree = "<group>"; };
+		9A95FD742A120A6700E22030 /* ShowImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowImageViewController.swift; sourceTree = "<group>"; };
 		9A980EB32A0DEF9900770531 /* VideosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosTableViewCell.swift; sourceTree = "<group>"; };
 		9A980EB42A0DEF9900770531 /* VideosTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideosTableViewCell.xib; sourceTree = "<group>"; };
 		9A980EB72A0E279F00770531 /* SubVideosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubVideosViewController.swift; sourceTree = "<group>"; };
@@ -61,12 +67,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				690D7631CCC3822F0A78ED81 /* Pods_VideoPhotoSecrete2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4188B8F71633E79203101D18 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				02D909E254CFB5B2A3C6B5E2 /* Pods_VideoPhotoSecrete2.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4A4289E35BBAB7D7B79BA7C1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2253D9B9DC5BC7D17E7D38C0 /* Pods-VideoPhotoSecrete2.debug.xcconfig */,
+				90611CC99802F44CD8B34E32 /* Pods-VideoPhotoSecrete2.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		9A980EB22A0DEF6900770531 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +106,7 @@
 			children = (
 				9A9E5ECB2A0CAB1F008CBAD9 /* SubPhotosViewController.swift */,
 				9A980EB72A0E279F00770531 /* SubVideosViewController.swift */,
+				9A95FD742A120A6700E22030 /* ShowImageViewController.swift */,
 			);
 			path = SuperSubViewController;
 			sourceTree = "<group>";
@@ -90,6 +116,8 @@
 			children = (
 				9AA45B392A0B32F8007A2A18 /* VideoPhotoSecrete2 */,
 				9AA45B382A0B32F8007A2A18 /* Products */,
+				4A4289E35BBAB7D7B79BA7C1 /* Pods */,
+				4188B8F71633E79203101D18 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -167,9 +195,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AA45B4B2A0B32FA007A2A18 /* Build configuration list for PBXNativeTarget "VideoPhotoSecrete2" */;
 			buildPhases = (
+				8D4E51F46208B7385D8398FA /* [CP] Check Pods Manifest.lock */,
 				9AA45B332A0B32F8007A2A18 /* Sources */,
 				9AA45B342A0B32F8007A2A18 /* Frameworks */,
 				9AA45B352A0B32F8007A2A18 /* Resources */,
+				8B55D71D39A6D38C513B0AF9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -230,6 +260,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8B55D71D39A6D38C513B0AF9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VideoPhotoSecrete2/Pods-VideoPhotoSecrete2-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VideoPhotoSecrete2/Pods-VideoPhotoSecrete2-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VideoPhotoSecrete2/Pods-VideoPhotoSecrete2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D4E51F46208B7385D8398FA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VideoPhotoSecrete2-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9AA45B332A0B32F8007A2A18 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -239,6 +311,7 @@
 				9A980EB82A0E279F00770531 /* SubVideosViewController.swift in Sources */,
 				9A980EB52A0DEF9900770531 /* VideosTableViewCell.swift in Sources */,
 				9AA45B5B2A0B4A2E007A2A18 /* VideosViewController.swift in Sources */,
+				9A95FD752A120A6700E22030 /* ShowImageViewController.swift in Sources */,
 				9AA45B5F2A0B4A41007A2A18 /* DocumentsViewController.swift in Sources */,
 				9A9E5EC82A0C8F2C008CBAD9 /* PhotosCollectionViewCell.swift in Sources */,
 				9AA45B3B2A0B32F8007A2A18 /* AppDelegate.swift in Sources */,
@@ -390,6 +463,7 @@
 		};
 		9AA45B4C2A0B32FA007A2A18 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2253D9B9DC5BC7D17E7D38C0 /* Pods-VideoPhotoSecrete2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -409,6 +483,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -424,6 +499,7 @@
 		};
 		9AA45B4D2A0B32FA007A2A18 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90611CC99802F44CD8B34E32 /* Pods-VideoPhotoSecrete2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -443,6 +519,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
