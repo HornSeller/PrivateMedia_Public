@@ -107,22 +107,26 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
         name = self.title!
         
         // tạo folder ImageForCell tại lần đầu tiên sử dụng app
-        guard let documentURL = self.fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            return
-        }
-        
-        imageForCellURL = documentURL.appendingPathComponent("ImageForCell")
-        
-        if !self.fileManager.fileExists(atPath: imageForCellURL!.path) {
-            do {
-                try self.fileManager.createDirectory(atPath: imageForCellURL!.path, withIntermediateDirectories: true, attributes: nil)
-                let documentPath = imageForCellURL!.path
-                print("Path to pictures directory: \(documentPath)")
-            } catch {
-                print("Error creating directory: \(error)")
-            }
-        }
+//        guard let documentURL = self.fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+//            return
+//        }
+//
+//        imageForCellURL = documentURL.appendingPathComponent("ImageForCell")
+//
+//        if !self.fileManager.fileExists(atPath: imageForCellURL!.path) {
+//            do {
+//                try self.fileManager.createDirectory(atPath: imageForCellURL!.path, withIntermediateDirectories: true, attributes: nil)
+//                let documentPath = imageForCellURL!.path
+//                print("Path to pictures directory: \(documentPath)")
+//            } catch {
+//                print("Error creating directory: \(error)")
+//            }
+//        }
         //
+        
+        let leftBarButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(leftBarButtonTapped))
+        navigationItem.leftBarButtonItem = leftBarButton
+        navigationItem.leftBarButtonItem?.tintColor = .white
         
         collectionView.register(UINib(nibName: "SubVideosCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "myCell")
         
@@ -210,6 +214,10 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
             present(actionSheet, animated: true, completion: nil)
             // TODO: Handle long press action
         }
+    }
+    
+    @objc func leftBarButtonTapped() {
+        navigationController?.popViewController(animated: true)
     }
     
     func updateVideosName() {

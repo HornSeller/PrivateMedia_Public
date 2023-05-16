@@ -136,7 +136,7 @@
                         <barButtonItem key="leftBarButtonItem" image="chevron.down" catalog="system" style="plain" id="veI-KI-Y60">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="backBtnTapped:" destination="AmC-4R-3F7" id="cSK-rl-KRt"/>
+                                <action selector="backBtnTapped:" destination="AmC-4R-3F7" id="v2x-dP-DnO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -199,7 +199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aCZ-PE-wB1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3404" y="2938.6699507389162"/>
+            <point key="canvasLocation" x="-4252" y="2982"/>
         </scene>
         <!--Sub Photos View Controller-->
         <scene sceneID="Hvk-gK-heu">
@@ -298,7 +298,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2cS-FX-PK2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2335.1999999999998" y="2940.1477832512314"/>
+            <point key="canvasLocation" x="-3278" y="2982"/>
         </scene>
         <!--Sub Videos View Controller-->
         <scene sceneID="B7b-3u-sNN">
@@ -371,7 +371,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iIn-kP-PJY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1508" y="2938.6699507389162"/>
+            <point key="canvasLocation" x="-2450" y="2982"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="blc-zX-irV">
@@ -556,7 +556,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="tJJ-fs-RdI">
-                        <barButtonItem key="leftBarButtonItem" image="chevron.down" catalog="system" style="plain" id="1lY-Xc-mVs"/>
+                        <barButtonItem key="leftBarButtonItem" image="chevron.down" catalog="system" style="plain" id="1lY-Xc-mVs">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jie-nB-bse" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -581,23 +583,137 @@
             </objects>
             <point key="canvasLocation" x="-1558" y="1361"/>
         </scene>
-        <!--Documents View Controller-->
+        <!--Documents-->
         <scene sceneID="JgQ-hq-mu8">
             <objects>
                 <viewController id="5jW-kj-E2T" customClass="DocumentsViewController" customModule="VideoPhotoSecrete2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HSw-kJ-0wk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kge-Dy-ON6">
+                                <rect key="frame" x="0.0" y="54" width="375" height="748"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Kjw-O0-NTB">
+                                        <rect key="frame" x="0.0" y="79" width="375" height="542"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="5jW-kj-E2T" id="2Mg-mj-Gbw"/>
+                                            <outlet property="delegate" destination="5jW-kj-E2T" id="DhH-9f-IFd"/>
+                                        </connections>
+                                    </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4LC-CQ-R4E">
+                                        <rect key="frame" x="153" y="651" width="68" height="68"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="elip"/>
+                                        <connections>
+                                            <action selector="createAlbumBtnTapped:" destination="5jW-kj-E2T" eventType="touchUpInside" id="4pf-Kz-UJy"/>
+                                        </connections>
+                                    </button>
+                                    <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="BOq-do-GwH">
+                                        <rect key="frame" x="8" y="0.0" width="359" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.96862745098039216" green="0.77647058823529413" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="barTintColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="5jW-kj-E2T" id="4RQ-nV-bSd"/>
+                                        </connections>
+                                    </searchBar>
+                                </subviews>
+                                <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="AaB-lB-pYT"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="kge-Dy-ON6" firstAttribute="width" secondItem="AaB-lB-pYT" secondAttribute="width" id="7SC-GT-jGQ"/>
+                            <constraint firstItem="kge-Dy-ON6" firstAttribute="centerY" secondItem="AaB-lB-pYT" secondAttribute="centerY" id="RAc-rK-ljD"/>
+                            <constraint firstItem="kge-Dy-ON6" firstAttribute="height" secondItem="AaB-lB-pYT" secondAttribute="height" multiplier="0.973958" id="nVC-uJ-2qO"/>
+                            <constraint firstItem="kge-Dy-ON6" firstAttribute="centerX" secondItem="AaB-lB-pYT" secondAttribute="centerX" id="xW8-M7-Hy4"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="cbb-Xe-2Pm">
-                        <barButtonItem key="leftBarButtonItem" image="chevron.down" catalog="system" style="plain" id="rcX-kr-qa8"/>
+                    <navigationItem key="navigationItem" title="Documents" id="cbb-Xe-2Pm">
+                        <barButtonItem key="leftBarButtonItem" image="chevron.down" catalog="system" style="plain" id="rcX-kr-qa8">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="backBtnTapped:" destination="5jW-kj-E2T" id="Kkg-Vm-ecV"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="BOq-do-GwH" id="Ljv-b4-OeB"/>
+                        <outlet property="tableView" destination="Kjw-O0-NTB" id="skG-nh-QT3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ee2-ma-EKh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-787" y="2123"/>
+            <point key="canvasLocation" x="-788" y="2122.9064039408868"/>
+        </scene>
+        <!--Sub Documents View Controller-->
+        <scene sceneID="fcU-MP-QtE">
+            <objects>
+                <viewController storyboardIdentifier="SubDocumentsViewController" id="pmc-vI-Q3W" customClass="SubDocumentsViewController" customModule="VideoPhotoSecrete2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="R41-ap-r2Y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tq7-zw-O3y">
+                                <rect key="frame" x="0.0" y="50" width="375" height="728"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="meZ-Kq-StR">
+                                        <rect key="frame" x="8" y="8" width="359" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.96862745098039216" green="0.77647058823529413" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="barTintColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="pmc-vI-Q3W" id="ogE-0w-0i0"/>
+                                        </connections>
+                                    </searchBar>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="naU-62-bbR">
+                                        <rect key="frame" x="0.0" y="83" width="375" height="557"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="pmc-vI-Q3W" id="Vh0-c5-EqU"/>
+                                            <outlet property="delegate" destination="pmc-vI-Q3W" id="MF5-nt-vyv"/>
+                                        </connections>
+                                    </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZ8-ZG-SMW">
+                                        <rect key="frame" x="153" y="660" width="68" height="68"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="elip"/>
+                                        <connections>
+                                            <action selector="addBtnTapped:" destination="pmc-vI-Q3W" eventType="touchUpInside" id="Kxj-VL-InU"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="8dY-yW-58N"/>
+                        <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="tq7-zw-O3y" firstAttribute="centerX" secondItem="8dY-yW-58N" secondAttribute="centerX" id="9Ox-rn-6WI"/>
+                            <constraint firstItem="tq7-zw-O3y" firstAttribute="centerY" secondItem="8dY-yW-58N" secondAttribute="centerY" id="BSD-xc-iKI"/>
+                            <constraint firstItem="tq7-zw-O3y" firstAttribute="width" secondItem="8dY-yW-58N" secondAttribute="width" id="dmT-Nz-Efx"/>
+                            <constraint firstItem="tq7-zw-O3y" firstAttribute="height" secondItem="8dY-yW-58N" secondAttribute="height" id="s0Y-tP-W9j"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="meZ-Kq-StR" id="cLz-Ka-963"/>
+                        <outlet property="tableView" destination="naU-62-bbR" id="RqA-PV-YY3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L24-qP-AjJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-788" y="2982"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7NA-O9-aWZ">
@@ -633,7 +749,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8hq-cO-j2l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4346.3999999999996" y="2938.6699507389162"/>
+            <point key="canvasLocation" x="-5260" y="2982"/>
         </scene>
     </scenes>
     <resources>

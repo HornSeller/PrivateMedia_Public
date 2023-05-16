@@ -138,6 +138,11 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
         layout.itemSize = CGSize(width: sizeCell, height: sizeCell)
         layout.sectionInset = UIEdgeInsets.init(top: margin, left: margin, bottom: margin, right: margin)
         collectionView.collectionViewLayout = layout
+        
+        let leftBarButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(leftBarButtonTapped))
+        navigationItem.leftBarButtonItem = leftBarButton
+        navigationItem.leftBarButtonItem?.tintColor = .white
+        
         updatePhotosName();
     }
     
@@ -209,6 +214,10 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
                 try? imageData.write(to: photoURL)
             }
         }
+    
+    @objc func leftBarButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
     
     static func makeSelf(name: String) -> SubPhotosViewController {
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
