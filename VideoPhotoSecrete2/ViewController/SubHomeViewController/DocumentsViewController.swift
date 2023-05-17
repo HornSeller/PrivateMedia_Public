@@ -69,6 +69,11 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     @IBAction func createAlbumBtnTapped(_ sender: UIButton) {
         let alert = UIAlertController(title: "Create album", message: "", preferredStyle: .alert)
         alert.addTextField(){ (textfield) in

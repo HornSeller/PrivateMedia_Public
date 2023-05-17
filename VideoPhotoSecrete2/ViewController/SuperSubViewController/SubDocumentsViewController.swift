@@ -12,50 +12,40 @@ import UniformTypeIdentifiers
 
 class SubDocumentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIDocumentPickerDelegate, UIDocumentInteractionControllerDelegate, QLPreviewControllerDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        cellCount
+        documentsName.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! SubDocumentsTableViewCell
-        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
         
-        let documentsFileUrl = documentsUrl!.appendingPathComponent("Documents")
-        let folderUrl = documentsFileUrl.appendingPathComponent(self.title!)
-        do {
-            let fileList = try fileManager.contentsOfDirectory(atPath: folderUrl.path)
-            let fileName = fileList[indexPath.row]
-            let components = fileName.components(separatedBy: ".")
-            if components.count > 1 {
-                let fileExtension = components[1]
-                print(fileExtension)
-                switch fileExtension {
-                case "doc":
-                    cell.imgView.image = UIImage(named: "doc")
-                    break
-                case "docx":
-                    cell.imgView.image = UIImage(named: "doc")
-                    break
-                case "xls":
-                    cell.imgView.image = UIImage(named: "xls")
-                    break
-                case "ppt":
-                    cell.imgView.image = UIImage(named: "ppt")
-                    break
-                case "pdf":
-                    cell.imgView.image = UIImage(named: "pdf")
-                    break
-                default:
-                    cell.imgView.image = UIImage(named: "Document")
-                    break
-                }
-                
+        let fileName = nameArray[indexPath.row]
+        let components = fileName.components(separatedBy: ".")
+        if components.count > 1 {
+            let fileExtension = components[1]
+            switch fileExtension {
+            case "doc":
+                cell.imgView.image = UIImage(named: "doc")
+                break
+            case "docx":
+                cell.imgView.image = UIImage(named: "doc")
+                break
+            case "xls":
+                cell.imgView.image = UIImage(named: "xls")
+                break
+            case "ppt":
+                cell.imgView.image = UIImage(named: "ppt")
+                break
+            case "pdf":
+                cell.imgView.image = UIImage(named: "pdf")
+                break
+            default:
+                cell.imgView.image = UIImage(named: "Document")
+                break
             }
-            cell.titleLb.text = fileName
-            cell.backgroundColor = UIColor.clear
-            print(fileName)
-        } catch {
-            print(error.localizedDescription)
+            
         }
+        cell.titleLb.text = fileName
+        cell.backgroundColor = UIColor.clear
         
         return cell
     }
@@ -63,16 +53,12 @@ class SubDocumentsViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        let documentInteractionController = UIDocumentInteractionController()
         let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
-        
-        let documentsFileUrl = documentsUrl!.appendingPathComponent("Documents")
-        let folderUrl = documentsFileUrl.appendingPathComponent(self.title!)
         let tempFolder = documentsUrl!.appendingPathComponent("temp")
         
         do {
             try fileManager.createDirectory(atPath: tempFolder.path, withIntermediateDirectories: true)
-            let fileList = try fileManager.contentsOfDirectory(atPath: folderUrl.path)
-            let fileName = fileList[indexPath.row]
-            fileUrlForQL = folderUrl.appendingPathComponent(fileName)
+            let fileName = documentsName[indexPath.row]
+            fileUrlForQL = albumUrl!.appendingPathComponent(fileName)
             tempFile = tempFolder.appendingPathComponent(fileName)
             print(fileUrlForQL as Any)
             try fileManager.copyItem(at: fileUrlForQL!, to: tempFile!)
@@ -109,17 +95,20 @@ class SubDocumentsViewController: UIViewController, UITableViewDelegate, UITable
         
         for url in urls {
             do {
-                print(url)
                 let fileName = url.lastPathComponent
+                print(fileName)
                 let components = fileName.components(separatedBy: ".")
                 if components.count > 1 {
                     let nameWithoutExtension = components[0]
                     let fileExtension = components[1]
-                    let name = "\(nameWithoutExtension)_\(formatter.string(from: Date())).\(fileExtension)"
-                    print(name)
+                    let name = "\(formatter.string(from: Date()))_\(nameWithoutExtension).\(fileExtension)"
                     let fileUrl = folderUrl.appendingPathComponent(name)
                     try fileManager.moveItem(at: url, to: fileUrl)
-                    cellCount += 1
+                    updateDocumentsName()
+                    nameArray.removeAll()
+                    for i in 0 ..< documentsName.count {
+                        nameArray.append(splitName(name: documentsName[i])!)
+                    }
                     tableView.reloadData()
                 }
             } catch {
@@ -132,9 +121,12 @@ class SubDocumentsViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var searchBar: UISearchBar!
     
     let fileManager = FileManager.default
-    var cellCount = 0
     var fileUrlForQL: URL?
     var tempFile: URL?
+    var documentsName: [String] = []
+    var nameArray: [String] = []
+    var albumUrl: URL?
+    
     
     let documentPicker = UIDocumentPickerViewController(documentTypes: ["com.microsoft.word.doc", "org.openxmlformats.wordprocessingml.document", "com.microsoft.excel.xls", "org.openxmlformats.spreadsheetml.sheet", "com.microsoft.powerpoint.​ppt", "org.openxmlformats.presentationml.presentation",
         "com.adobe.pdf"], in: .import)
@@ -150,12 +142,17 @@ class SubDocumentsViewController: UIViewController, UITableViewDelegate, UITable
         navigationItem.leftBarButtonItem?.tintColor = .white
         
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        updateDocumentsName()
+        for i in 0 ..< documentsName.count {
+            nameArray.append(splitName(name: documentsName[i])!)
+        }
+        print(nameArray)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        cellCount = 0
         guard let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
             return
         }
@@ -164,15 +161,19 @@ class SubDocumentsViewController: UIViewController, UITableViewDelegate, UITable
         let tempFolder = documentsUrl.appendingPathComponent("temp")
         
         do {
-            let fileList = try fileManager.contentsOfDirectory(atPath: "\(documentsFileUrl.path)/\(self.title!)")
-            cellCount = fileList.count
+            //let fileList = try fileManager.contentsOfDirectory(atPath: "\(documentsFileUrl.path)/\(self.title!)")
             
             let contents = try fileManager.contentsOfDirectory(atPath: tempFolder.path)
-            print(contents)
+            //print(contents)
             //try fileManager.removeItem(at: tempFile ?? tempFolder)
             try fileManager.removeItem(at: tempFolder)
         } catch {
             print(error.localizedDescription)
+        }
+        updateDocumentsName()
+        nameArray.removeAll()
+        for i in 0 ..< documentsName.count {
+            nameArray.append(splitName(name: documentsName[i])!)
         }
         self.tableView.reloadData()
     }
@@ -186,12 +187,35 @@ class SubDocumentsViewController: UIViewController, UITableViewDelegate, UITable
         documentPicker.allowsMultipleSelection = true
         present(documentPicker, animated: true, completion: nil)
     }
+    
+    func splitName(name: String) -> String? {
+        let components = name.components(separatedBy: "_")
+            if components.count > 1 {
+                return components[1]
+            }
+            return nil
+    }
+    
+    func updateDocumentsName() {
+        let documentsDirectory = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        let documentURL = documentsDirectory.appendingPathComponent("Documents")
+        let folderURL = documentURL.appendingPathComponent(title!)
+        albumUrl = folderURL
+        do {
+            self.documentsName = try fileManager.contentsOfDirectory(atPath: folderURL.path)
+            self.documentsName.sort { (lhs: String, rhs: String) -> Bool in
+                return lhs < rhs
+            }
+            // Lưu danh sách các tệp ảnh vào một mảng
+        } catch {
+            print("Error: \(error.localizedDescription)")
+        }
+    }
 
     static func makeSelf(name: String) -> SubDocumentsViewController {
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let rootViewController: SubDocumentsViewController = storyboard.instantiateViewController(withIdentifier: "SubDocumentsViewController") as! SubDocumentsViewController
         rootViewController.title = name
-        
         
         return rootViewController
     }
