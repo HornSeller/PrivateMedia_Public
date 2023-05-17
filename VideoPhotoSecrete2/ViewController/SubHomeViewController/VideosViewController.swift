@@ -39,6 +39,8 @@ class VideosViewController: UIViewController, UITableViewDataSource, UITableView
             else if filesList.count == 1 {
                 let videoURL = albumURL.appendingPathComponent(filesList[0])
                 cell.imgView.image = generateThumbnail(path: videoURL)
+                cell.imgView.layer.borderWidth = 0.1
+                cell.imgView.layer.cornerRadius = 15
                 cell.videoCountLb.text = "1 video"
             }
             else {
@@ -47,6 +49,8 @@ class VideosViewController: UIViewController, UITableViewDataSource, UITableView
                 }
                 let lastVideoURL = albumURL.appendingPathComponent(filesList[filesList.count - 1])
                 cell.imgView.image = generateThumbnail(path: lastVideoURL)
+                cell.imgView.layer.borderWidth = 0.1
+                cell.imgView.layer.cornerRadius = 15
                 cell.videoCountLb.text = String(filesList.count) + " videos"
             }
         } catch {

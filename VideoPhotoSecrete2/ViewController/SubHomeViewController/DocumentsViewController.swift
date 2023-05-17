@@ -42,7 +42,7 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
         
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         
-        //UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .white
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).font = UIFont.systemFont(ofSize: 14)
         
         self.navigationController?.navigationBar.titleTextAttributes = [
                     NSAttributedString.Key.foregroundColor: UIColor.white,
@@ -51,6 +51,14 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
         
         tableView.register(UINib(nibName: "DocumentsTableViewCell", bundle: nil), forCellReuseIdentifier: "myCell")
         tableView.rowHeight = 73
+        
+        if let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField {
+            let placeholderAttributes: [NSAttributedString.Key: Any] = [
+                .foregroundColor: UIColor.white, // Màu sắc mong muốn
+                .font: UIFont.systemFont(ofSize: 14) // Font chữ mong muốn
+            ]
+            textFieldInsideSearchBar.attributedPlaceholder = NSAttributedString(string: "Search", attributes: placeholderAttributes)
+        }
         
         guard let documentURL = self.fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
             return

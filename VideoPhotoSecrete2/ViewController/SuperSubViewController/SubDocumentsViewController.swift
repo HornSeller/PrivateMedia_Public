@@ -101,7 +101,7 @@ class SubDocumentsViewController: UIViewController, UITableViewDelegate, UITable
                 if components.count > 1 {
                     let nameWithoutExtension = components[0]
                     let fileExtension = components[1]
-                    let name = "\(formatter.string(from: Date()))_\(nameWithoutExtension).\(fileExtension)"
+                    let name = "\(formatter.string(from: Date()))'\(nameWithoutExtension).\(fileExtension)"
                     let fileUrl = folderUrl.appendingPathComponent(name)
                     try fileManager.moveItem(at: url, to: fileUrl)
                     updateDocumentsName()
@@ -142,6 +142,16 @@ class SubDocumentsViewController: UIViewController, UITableViewDelegate, UITable
         navigationItem.leftBarButtonItem?.tintColor = .white
         
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).font = UIFont.systemFont(ofSize: 14)
+        
+        if let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField {
+            let placeholderAttributes: [NSAttributedString.Key: Any] = [
+                .foregroundColor: UIColor.white, // Màu sắc mong muốn
+                .font: UIFont.systemFont(ofSize: 14) // Font chữ mong muốn
+            ]
+            textFieldInsideSearchBar.attributedPlaceholder = NSAttributedString(string: "Search", attributes: placeholderAttributes)
+        }
         
         updateDocumentsName()
         for i in 0 ..< documentsName.count {
@@ -189,7 +199,7 @@ class SubDocumentsViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func splitName(name: String) -> String? {
-        let components = name.components(separatedBy: "_")
+        let components = name.components(separatedBy: "'")
             if components.count > 1 {
                 return components[1]
             }

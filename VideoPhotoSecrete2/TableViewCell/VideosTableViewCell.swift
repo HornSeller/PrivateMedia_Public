@@ -15,8 +15,7 @@ class VideosTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        imgView.layer.borderWidth = 0.1
-        imgView.layer.cornerRadius = 15
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

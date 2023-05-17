@@ -10,7 +10,7 @@ import UIKit
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     let titleCell = ["Photos", "Videos", "Audios", "Documents"]
-    let imageCell = ["elipse", "elipse-2", "elipse-3", "elipse-4"]
+    let imageCell = ["elipse-5", "elipse-6", "elipse-7", "elipse-8"]
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         titleCell.count
     }

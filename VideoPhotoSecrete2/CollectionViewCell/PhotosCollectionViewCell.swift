@@ -15,8 +15,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        imageView.layer.borderWidth = 0.1
-        imageView.layer.cornerRadius = 15
+        
     }
 
 }

@@ -38,6 +38,8 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
                 }
                 let lastImage = albumUrl.appendingPathComponent(fileList[fileList.count - 1])
                 cell.imageView.image = UIImage(contentsOfFile: lastImage.path)
+                cell.imageView.layer.borderWidth = 0.1
+                cell.imageView.layer.cornerRadius = 15
             }
         } catch {
             print(error.localizedDescription)
