@@ -75,7 +75,8 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath) as! SubPhotosCollectionViewCell
         
         let imageName = photosName[indexPath.row]
-        cell.imageView.kf.setImage(with: albumUrl?.appendingPathComponent(imageName))
+        cell.imageView.kf.setImage(with: albumUrl?.appendingPathComponent(imageName), placeholder: UIImage(named: "loading"), options: nil, progressBlock: nil, completionHandler: nil)
+        
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         cell.addGestureRecognizer(longPressRecognizer)
         return cell

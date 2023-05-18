@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		690D7631CCC3822F0A78ED81 /* Pods_VideoPhotoSecrete2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D909E254CFB5B2A3C6B5E2 /* Pods_VideoPhotoSecrete2.framework */; };
+		9A94E8012A15C63300F00605 /* AudiosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A94E7FF2A15C63300F00605 /* AudiosTableViewCell.swift */; };
+		9A94E8022A15C63300F00605 /* AudiosTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A94E8002A15C63300F00605 /* AudiosTableViewCell.xib */; };
+		9A94E8052A15D6E300F00605 /* SubAudiosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A94E8032A15D6E300F00605 /* SubAudiosTableViewCell.swift */; };
+		9A94E8062A15D6E300F00605 /* SubAudiosTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A94E8042A15D6E300F00605 /* SubAudiosTableViewCell.xib */; };
 		9A95FD752A120A6700E22030 /* ShowImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A95FD742A120A6700E22030 /* ShowImageViewController.swift */; };
 		9A973B702A1319EA00FE96B5 /* SubAudiosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A973B6F2A1319EA00FE96B5 /* SubAudiosViewController.swift */; };
 		9A973B722A1319F700FE96B5 /* SubDocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A973B712A1319F700FE96B5 /* SubDocumentsViewController.swift */; };
@@ -42,6 +46,10 @@
 		02D909E254CFB5B2A3C6B5E2 /* Pods_VideoPhotoSecrete2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VideoPhotoSecrete2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2253D9B9DC5BC7D17E7D38C0 /* Pods-VideoPhotoSecrete2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoPhotoSecrete2.debug.xcconfig"; path = "Target Support Files/Pods-VideoPhotoSecrete2/Pods-VideoPhotoSecrete2.debug.xcconfig"; sourceTree = "<group>"; };
 		90611CC99802F44CD8B34E32 /* Pods-VideoPhotoSecrete2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoPhotoSecrete2.release.xcconfig"; path = "Target Support Files/Pods-VideoPhotoSecrete2/Pods-VideoPhotoSecrete2.release.xcconfig"; sourceTree = "<group>"; };
+		9A94E7FF2A15C63300F00605 /* AudiosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudiosTableViewCell.swift; sourceTree = "<group>"; };
+		9A94E8002A15C63300F00605 /* AudiosTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudiosTableViewCell.xib; sourceTree = "<group>"; };
+		9A94E8032A15D6E300F00605 /* SubAudiosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubAudiosTableViewCell.swift; sourceTree = "<group>"; };
+		9A94E8042A15D6E300F00605 /* SubAudiosTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubAudiosTableViewCell.xib; sourceTree = "<group>"; };
 		9A95FD742A120A6700E22030 /* ShowImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowImageViewController.swift; sourceTree = "<group>"; };
 		9A973B6F2A1319EA00FE96B5 /* SubAudiosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubAudiosViewController.swift; sourceTree = "<group>"; };
 		9A973B712A1319F700FE96B5 /* SubDocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubDocumentsViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +120,10 @@
 				9A973B742A131AB900FE96B5 /* DocumentsTableViewCell.xib */,
 				9A973B7B2A133B3C00FE96B5 /* SubDocumentsTableViewCell.swift */,
 				9A973B7C2A133B3C00FE96B5 /* SubDocumentsTableViewCell.xib */,
+				9A94E7FF2A15C63300F00605 /* AudiosTableViewCell.swift */,
+				9A94E8002A15C63300F00605 /* AudiosTableViewCell.xib */,
+				9A94E8032A15D6E300F00605 /* SubAudiosTableViewCell.swift */,
+				9A94E8042A15D6E300F00605 /* SubAudiosTableViewCell.xib */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -265,6 +277,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A94E8022A15C63300F00605 /* AudiosTableViewCell.xib in Resources */,
 				9A973B7E2A133B3C00FE96B5 /* SubDocumentsTableViewCell.xib in Resources */,
 				9A973B762A131AB900FE96B5 /* DocumentsTableViewCell.xib in Resources */,
 				9AA45B472A0B32FA007A2A18 /* LaunchScreen.storyboard in Resources */,
@@ -273,6 +286,7 @@
 				9A980EB62A0DEF9900770531 /* VideosTableViewCell.xib in Resources */,
 				9A980EBC2A0E295900770531 /* SubVideosCollectionViewCell.xib in Resources */,
 				9AA45B422A0B32F8007A2A18 /* Main.storyboard in Resources */,
+				9A94E8062A15D6E300F00605 /* SubAudiosTableViewCell.xib in Resources */,
 				9AA45B522A0B3AAE007A2A18 /* HomeCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,6 +346,7 @@
 				9AA45B5B2A0B4A2E007A2A18 /* VideosViewController.swift in Sources */,
 				9A95FD752A120A6700E22030 /* ShowImageViewController.swift in Sources */,
 				9A973B7D2A133B3C00FE96B5 /* SubDocumentsTableViewCell.swift in Sources */,
+				9A94E8052A15D6E300F00605 /* SubAudiosTableViewCell.swift in Sources */,
 				9AA45B5F2A0B4A41007A2A18 /* DocumentsViewController.swift in Sources */,
 				9A973B702A1319EA00FE96B5 /* SubAudiosViewController.swift in Sources */,
 				9A9E5EC82A0C8F2C008CBAD9 /* PhotosCollectionViewCell.swift in Sources */,
@@ -342,6 +357,7 @@
 				9A973B752A131AB900FE96B5 /* DocumentsTableViewCell.swift in Sources */,
 				9AA45B552A0B3C45007A2A18 /* HomeViewController.swift in Sources */,
 				9AA45B5D2A0B4A38007A2A18 /* AudiosViewController.swift in Sources */,
+				9A94E8012A15C63300F00605 /* AudiosTableViewCell.swift in Sources */,
 				9A9E5ECE2A0CCE99008CBAD9 /* SubPhotosCollectionViewCell.swift in Sources */,
 				9AA45B592A0B4A26007A2A18 /* PhotosViewController.swift in Sources */,
 				9A980EBB2A0E295900770531 /* SubVideosCollectionViewCell.swift in Sources */,

@@ -21,6 +21,14 @@ class ShowImageViewController: UIViewController, UIScrollViewDelegate {
         imageView.image = imageV
         imageView.contentMode = .scaleAspectFit
         scrollView.delegate = self
+        
+        let leftBarButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(leftBarButtonTapped))
+        navigationItem.leftBarButtonItem = leftBarButton
+        navigationItem.leftBarButtonItem?.tintColor = .white
+    }
+    
+    @objc func leftBarButtonTapped() {
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func deleteBarBtnTapped(_ sender: UIBarButtonItem) {

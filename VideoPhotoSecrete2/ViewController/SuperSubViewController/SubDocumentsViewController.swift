@@ -100,14 +100,14 @@ class SubDocumentsViewController: UIViewController, UITableViewDelegate, UITable
                 let components = fileName.components(separatedBy: ".")
                 if components.count > 1 {
                     let nameWithoutExtension = components[0]
-                    let fileExtension = components[1]
-                    let name = "\(formatter.string(from: Date()))'\(nameWithoutExtension).\(fileExtension)"
+                    let fileExtension = components.last
+                    let name = "\(formatter.string(from: Date()))'\(nameWithoutExtension).\(fileExtension ?? "doc")"
                     let fileUrl = folderUrl.appendingPathComponent(name)
                     try fileManager.moveItem(at: url, to: fileUrl)
                     updateDocumentsName()
                     nameArray.removeAll()
-                    for i in 0 ..< documentsName.count {
-                        nameArray.append(splitName(name: documentsName[i])!)
+                    for documentName in documentsName {
+                        nameArray.append(splitName(name: documentName)!)
                     }
                     tableView.reloadData()
                 }
@@ -154,8 +154,8 @@ class SubDocumentsViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         updateDocumentsName()
-        for i in 0 ..< documentsName.count {
-            nameArray.append(splitName(name: documentsName[i])!)
+        for documentName in documentsName {
+            nameArray.append(splitName(name: documentName)!)
         }
         print(nameArray)
     }
@@ -182,8 +182,8 @@ class SubDocumentsViewController: UIViewController, UITableViewDelegate, UITable
         }
         updateDocumentsName()
         nameArray.removeAll()
-        for i in 0 ..< documentsName.count {
-            nameArray.append(splitName(name: documentsName[i])!)
+        for documentName in documentsName {
+            nameArray.append(splitName(name: documentName)!)
         }
         self.tableView.reloadData()
     }
