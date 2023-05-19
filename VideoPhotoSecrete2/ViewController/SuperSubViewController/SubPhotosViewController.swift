@@ -173,7 +173,6 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
                     } catch {
                         print("Error deleting video: \(error)")
                     }
-
                 }
             }
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -227,5 +226,4 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
         
         return rootViewController
     }
-
 }

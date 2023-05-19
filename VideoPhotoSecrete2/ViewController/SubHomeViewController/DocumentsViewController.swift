@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DocumentsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class DocumentsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let dataTable = userDefault.stringArray(forKey: "listDocumentsAlbum")
@@ -19,6 +19,22 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
         let dataTable = userDefault.stringArray(forKey: "listDocumentsAlbum")
         cell.titleLb.text = dataTable![indexPath.row]
         cell.backgroundColor = UIColor.clear
+        
+        let documentURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
+        let documentsURL = documentURL?.appendingPathComponent("Documents")
+        let folderURL = documentsURL?.appendingPathComponent(dataTable![indexPath.row])
+        do {
+            let attrs = try fileManager.attributesOfItem(atPath: folderURL!.path) as NSDictionary
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "d MMM, yyyy"
+            let formattedDate = formatter.string(from: attrs.fileCreationDate()!)
+            cell.dateLb.text = formattedDate
+            cell.sizeLb.text = fileSize(fromPath: folderURL!.path)
+        } catch {
+            print(error.localizedDescription)
+        }
+        
         return cell
     }
     
@@ -28,6 +44,9 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
         self.navigationController?.pushViewController(SubDocumentsViewController.makeSelf(name: name), animated: true)
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        <#code#>
+    }
 
     var defaultValue = ["listDocumentsAlbum": []]
     let userDefault = UserDefaults.standard
@@ -137,6 +156,31 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
     
     @IBAction func backBtnTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
+    }
+    
+    func fileSize(fromPath path: String) -> String? {
+        guard let size = try? FileManager.default.attributesOfItem(atPath: path)[FileAttributeKey.size],
+            let fileSize = size as? UInt64 else {
+            return nil
+        }
+
+        // bytes
+        if fileSize < 1023 {
+            return String(format: "%lu bytes", CUnsignedLong(fileSize))
+        }
+        // KB
+        var floatSize = Float(fileSize / 1024)
+        if floatSize < 1023 {
+            return String(format: "%.1f KB", floatSize)
+        }
+        // MB
+        floatSize = floatSize / 1024
+        if floatSize < 1023 {
+            return String(format: "%.1f MB", floatSize)
+        }
+        // GB
+        floatSize = floatSize / 1024
+        return String(format: "%.1f GB", floatSize)
     }
     
 }

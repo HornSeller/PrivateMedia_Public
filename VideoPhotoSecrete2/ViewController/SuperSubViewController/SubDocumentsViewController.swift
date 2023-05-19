@@ -45,6 +45,18 @@ class SubDocumentsViewController: UIViewController, UITableViewDelegate, UITable
             
         }
         cell.titleLb.text = fileName
+        do {
+            let path = albumUrl?.appendingPathComponent(documentsName[indexPath.row]).path
+            let attrs = try fileManager.attributesOfItem(atPath: path!) as NSDictionary
+            let formatter = DateFormatter()
+            formatter.dateFormat = "d MMM, yyyy"
+            let formattedDate = formatter.string(from: attrs.fileCreationDate()!)
+            cell.dateLb.text = formattedDate
+            cell.sizeLb.text = fileSize(fromPath: path!)
+        } catch {
+            print(error.localizedDescription)
+        }
+
         cell.backgroundColor = UIColor.clear
         
         return cell
@@ -220,6 +232,31 @@ class SubDocumentsViewController: UIViewController, UITableViewDelegate, UITable
         } catch {
             print("Error: \(error.localizedDescription)")
         }
+    }
+    
+    func fileSize(fromPath path: String) -> String? {
+        guard let size = try? FileManager.default.attributesOfItem(atPath: path)[FileAttributeKey.size],
+            let fileSize = size as? UInt64 else {
+            return nil
+        }
+
+        // bytes
+        if fileSize < 1023 {
+            return String(format: "%lu bytes", CUnsignedLong(fileSize))
+        }
+        // KB
+        var floatSize = Float(fileSize / 1024)
+        if floatSize < 1023 {
+            return String(format: "%.1f KB", floatSize)
+        }
+        // MB
+        floatSize = floatSize / 1024
+        if floatSize < 1023 {
+            return String(format: "%.1f MB", floatSize)
+        }
+        // GB
+        floatSize = floatSize / 1024
+        return String(format: "%.1f GB", floatSize)
     }
 
     static func makeSelf(name: String) -> SubDocumentsViewController {
