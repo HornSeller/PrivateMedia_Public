@@ -10,19 +10,17 @@ import UIKit
 class DocumentsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let dataTable = userDefault.stringArray(forKey: "listDocumentsAlbum")
-        return dataTable!.count
+        albumNameArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell") as! DocumentsTableViewCell
-        let dataTable = userDefault.stringArray(forKey: "listDocumentsAlbum")
-        cell.titleLb.text = dataTable![indexPath.row]
+        cell.titleLb.text = albumNameArray[indexPath.row]
         cell.backgroundColor = UIColor.clear
         
         let documentURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
         let documentsURL = documentURL?.appendingPathComponent("Documents")
-        let folderURL = documentsURL?.appendingPathComponent(dataTable![indexPath.row])
+        let folderURL = documentsURL?.appendingPathComponent(albumNameArray[indexPath.row])
         do {
             let attrs = try fileManager.attributesOfItem(atPath: folderURL!.path) as NSDictionary
             
@@ -39,25 +37,48 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let dataTable = userDefault.stringArray(forKey: "listDocumentsAlbum")
-        let name = dataTable![indexPath.row]
+        let name = albumNameArray[indexPath.row]
         self.navigationController?.pushViewController(SubDocumentsViewController.makeSelf(name: name), animated: true)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        <#code#>
+        var filteredArray: [String] = []
+        filteredArray.removeAll()
+        let arr = userDefault.stringArray(forKey: "listDocumentsAlbum")!
+        filteredArray = arr.filter { $0.lowercased().contains(searchText.lowercased()) }
+        albumNameArray = filteredArray
+        tableView.reloadData()
+        if searchText == "" {
+            albumNameArray = userDefault.stringArray(forKey: "listDocumentsAlbum")!
+            tableView.reloadData()
+        }
+        
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.showsCancelButton = true
+        return true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        albumNameArray = userDefault.stringArray(forKey: "listDocumentsAlbum")!
+        tableView.reloadData()
     }
 
     var defaultValue = ["listDocumentsAlbum": []]
     let userDefault = UserDefaults.standard
     let fileManager = FileManager.default
+    var albumNameArray: [String] = []
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         userDefault.register(defaults: defaultValue)
-        
+        //userDefault.removeObject(forKey: "listDocumentsAlbum")
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).font = UIFont.systemFont(ofSize: 14)
@@ -81,7 +102,7 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
         guard let documentURL = self.fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
             return
         }
-        
+        print(documentURL)
         let documentsURL = documentURL.appendingPathComponent("Documents")
         
         if !self.fileManager.fileExists(atPath: documentsURL.path) {
@@ -93,10 +114,12 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
                 print("Error creating directory: \(error)")
             }
         }
+        albumNameArray = userDefault.stringArray(forKey: "listDocumentsAlbum")!
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        albumNameArray = userDefault.stringArray(forKey: "listDocumentsAlbum")!
         tableView.reloadData()
     }
     
@@ -124,6 +147,7 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
             var dataUserdefault = self.userDefault.stringArray(forKey: "listDocumentsAlbum")
             dataUserdefault?.append((textField?.text)!)
             self.userDefault.set(dataUserdefault, forKey: "listDocumentsAlbum")
+            self.albumNameArray = self.userDefault.stringArray(forKey: "listDocumentsAlbum")!
             
             guard let fileNames = self.userDefault.stringArray(forKey: "listDocumentsAlbum") else {
                 return
