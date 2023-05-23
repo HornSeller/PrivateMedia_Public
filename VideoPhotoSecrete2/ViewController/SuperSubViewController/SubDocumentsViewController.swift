@@ -10,7 +10,7 @@ import QuickLook
 import MobileCoreServices
 import UniformTypeIdentifiers
 
-class SubDocumentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIDocumentPickerDelegate, UIDocumentInteractionControllerDelegate, QLPreviewControllerDataSource {
+class SubDocumentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIDocumentPickerDelegate, UIDocumentInteractionControllerDelegate, UISearchBarDelegate, QLPreviewControllerDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         documentsName.count
     }
@@ -198,6 +198,46 @@ class SubDocumentsViewController: UIViewController, UITableViewDelegate, UITable
             nameArray.append(splitName(name: documentName)!)
         }
         self.tableView.reloadData()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        var filteredArray: [String] = []
+        filteredArray.removeAll()
+        updateDocumentsName()
+        let arr = documentsName
+        filteredArray = arr.filter { $0.lowercased().contains(searchText.lowercased()) }
+        print(filteredArray)
+        documentsName = filteredArray
+        nameArray.removeAll()
+        for documentName in documentsName {
+            nameArray.append(splitName(name: documentName)!)
+        }
+        tableView.reloadData()
+        if searchText == "" {
+            updateDocumentsName()
+            for documentName in documentsName {
+                nameArray.append(splitName(name: documentName)!)
+            }
+            tableView.reloadData()
+        }
+        
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.showsCancelButton = true
+        return true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        updateDocumentsName()
+        nameArray.removeAll()
+        for documentName in documentsName {
+            nameArray.append(splitName(name: documentName)!)
+        }
+        tableView.reloadData()
     }
     
     @objc func leftBarButtonTapped() {

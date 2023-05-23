@@ -252,7 +252,6 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
         let rootViewController: SubVideosViewController = storyboard.instantiateViewController(withIdentifier: "SubVideosViewController") as! SubVideosViewController
         rootViewController.title = name
         
-        
         return rootViewController
     }
     
