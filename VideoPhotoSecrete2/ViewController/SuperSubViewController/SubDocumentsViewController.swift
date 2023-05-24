@@ -179,15 +179,9 @@ class SubDocumentsViewController: UIViewController, UITableViewDelegate, UITable
             return
         }
         
-        let documentsFileUrl = documentsUrl.appendingPathComponent("Documents")
         let tempFolder = documentsUrl.appendingPathComponent("temp")
         
         do {
-            //let fileList = try fileManager.contentsOfDirectory(atPath: "\(documentsFileUrl.path)/\(self.title!)")
-            
-            let contents = try fileManager.contentsOfDirectory(atPath: tempFolder.path)
-            //print(contents)
-            //try fileManager.removeItem(at: tempFile ?? tempFolder)
             try fileManager.removeItem(at: tempFolder)
         } catch {
             print(error.localizedDescription)

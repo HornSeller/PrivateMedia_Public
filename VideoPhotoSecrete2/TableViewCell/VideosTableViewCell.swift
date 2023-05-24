@@ -9,6 +9,7 @@ import UIKit
 
 class VideosTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet var imgView: UIImageView!
     @IBOutlet var videoCountLb: UILabel!
     @IBOutlet var titleLb: UILabel!

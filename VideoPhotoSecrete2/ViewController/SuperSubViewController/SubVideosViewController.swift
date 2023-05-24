@@ -180,28 +180,11 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
                 // TODO: Handle delete action
                 if let indexPath = self.collectionView.indexPath(for: cell) {
-                    let documentsDirectory = try! self.fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-                    let videosURL = documentsDirectory.appendingPathComponent("Videos")
-                    let videosDirectory = videosURL.appendingPathComponent(self.name)
+                    let videoURL = self.albumUrl?.appendingPathComponent(self.videosName[indexPath.row])
                     do {
-                        let directoryContents = try self.fileManager.contentsOfDirectory(atPath: videosDirectory.path)
-                        print(directoryContents)
-                        // tạo một mảng chứa thông tin về các video
-
-                        for videoName in directoryContents {
-                            let videosUrl = videosDirectory.appendingPathComponent(videoName)
-                            self.videos.append(videosUrl)
-                        }
-                        print(self.videos.count)
-                        let videoUrl = self.videos[indexPath.row]
-                        do {
-                            try self.fileManager.removeItem(at: videoUrl)
-                            self.videos.remove(at: indexPath.row)
-                            self.collectionView.reloadData()
-                            print(self.videos.count)
-                        } catch {
-                            print("Error deleting video: \(error)")
-                        }
+                        try self.fileManager.removeItem(at: videoURL!)
+                        self.updateVideosName()
+                        self.collectionView.reloadData()
                     } catch {
                         print(error.localizedDescription)
                     }

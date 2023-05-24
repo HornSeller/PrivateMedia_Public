@@ -24,12 +24,12 @@ class VideosViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! VideosTableViewCell
         cell.backgroundColor = UIColor.clear
-        let dataTable = userDefault.stringArray(forKey: "listVideosAlbum")
-        cell.titleLb.text = dataTable![indexPath.row]
+        var dataTable: [String] = userDefault.stringArray(forKey: "listVideosAlbum")!
+        cell.titleLb.text = dataTable[indexPath.row]
         
         let documentURL = self.fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
         let videosURL = documentURL!.appendingPathComponent("Videos")
-        let albumURL = videosURL.appendingPathComponent(dataTable![indexPath.row])
+        let albumURL = videosURL.appendingPathComponent(dataTable[indexPath.row])
         do {
             var filesList = try fileManager.contentsOfDirectory(atPath: albumURL.path)
             if filesList.count == 0 {
@@ -56,6 +56,30 @@ class VideosViewController: UIViewController, UITableViewDataSource, UITableView
         } catch {
             print(error.localizedDescription)
         }
+        
+        cell.menuBtn.showsMenuAsPrimaryAction = true
+        cell.menuBtn.menu = UIMenu(title: "", options: .displayInline, children: [
+            UIAction(title: "Delete", handler: { (_) in
+                do {
+                    try self.fileManager.removeItem(at: albumURL)
+                    dataTable.remove(at: indexPath.row)
+                    print(dataTable)
+                    self.userDefault.setValue(dataTable, forKey: "listVideosAlbum")
+                    tableView.reloadData()
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }),
+            
+            UIAction(title: "Rename", handler: { (_) in
+                print("b")
+            }),
+            
+            UIAction(title: "Share", handler: { (_) in
+                print("c")
+            })
+            
+        ])
         return cell
     }
     
