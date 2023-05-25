@@ -9,8 +9,12 @@ import UIKit
 import Kingfisher
 
 class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    @IBOutlet weak var toolBarImgView: UIImageView!
+    @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
-    
+    @IBOutlet weak var renameBtn: UIButton!
+    @IBOutlet weak var shareBtn: UIButton!
+    @IBOutlet weak var deleteBtn: UIButton!
     enum Mode {
         case view
         case select
@@ -22,17 +26,25 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     var selectBarButton: UIBarButtonItem!
     
-    var deleteBarButton: UIBarButtonItem!
-    
     var mMode: Mode = .view {
         didSet {
             switch mMode {
             case .view:
                 selectBarButton.title = "Select"
                 collectionView.allowsMultipleSelection = false
+                addBtn.isHidden = false
+                toolBarImgView.isHidden = true
+                deleteBtn.isHidden = true
+                shareBtn.isHidden = true
+                renameBtn.isHidden = true
             case .select:
                 selectBarButton.title = "Cancel"
                 collectionView.allowsMultipleSelection = true
+                addBtn.isHidden = true
+                toolBarImgView.isHidden = false
+                deleteBtn.isHidden = false
+                shareBtn.isHidden = false
+                renameBtn.isHidden = false
             }
         }
     }
@@ -91,11 +103,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         selectBarButton = {
             let barButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(selectBtnTapped(_:)))
-            return barButtonItem
-        }()
-        
-        deleteBarButton = {
-            let barButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteBtnTapped(_:)))
+            barButtonItem.tintColor = .white
             return barButtonItem
         }()
         
@@ -150,10 +158,6 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
         mMode = mMode == .view ? .select : .view
     }
     
-    @objc func deleteBtnTapped(_ sender: UIBarButtonItem) {
-        
-    }
-    
 //    @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
 //        if gestureRecognizer.state == .began {
 //            guard let cell = gestureRecognizer.view as? PhotosCollectionViewCell else {
@@ -182,6 +186,59 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
         dismiss(animated: true)
     }
     
+    @IBAction func deleteBtnTapped(_ sender: UIButton) {
+        var dataCollectionView = userDefault.stringArray(forKey: "listPhotosAlbum")
+        guard let documentURL = self.fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return
+        }
+        var indexArr: [Int] = []
+        let photosURL = documentURL.appendingPathComponent("Photos")
+        
+        if let selectedCell = collectionView.indexPathsForSelectedItems {
+            for indexPath in selectedCell.reversed() {
+                indexArr.append(indexPath.row)
+                print(indexPath.row)
+            }
+                    
+            indexArr.sort(by: >)
+            
+            if indexArr.count == 0 {
+                let alert = UIAlertController(title: "Please choose at least 1 Album to delete", message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                self.present(alert, animated: true)
+            }
+            
+            let alert = UIAlertController(title: "Do you really want to delete \(indexArr.count) Album(s)?", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Yes", style: .cancel, handler: { (_) in
+                for index in indexArr {
+                    let albumUrl = photosURL.appendingPathComponent(dataCollectionView![index])
+                    do {
+                        try self.fileManager.removeItem(at: albumUrl)
+                        dataCollectionView?.remove(at: index)
+                    } catch {
+                        print("Error deleting video: \(error)")
+                    }
+                }
+                
+                self.userDefault.setValue(dataCollectionView, forKey: "listPhotosAlbum")
+                self.collectionView.reloadData()
+            }))
+            alert.addAction(UIAlertAction(title: "No", style: .destructive))
+            
+            self.present(alert, animated: true)
+        }
+        print(userDefault.stringArray(forKey: "listPhotosAlbum"))
+        
+    }
+    
+    @IBAction func shareBtnTapped(_ sender: UIButton) {
+        print("b")
+    }
+    
+    @IBAction func renameBtnTapped(_ sender: UIButton) {
+        print("c")
+    }
+    
     @IBAction func createAlbumBtnTapped(_ sender: UIButton) {
         let alert = UIAlertController(title: "Create album", message: "", preferredStyle: .alert)
         alert.addTextField(){ (textfield) in
@@ -191,6 +248,13 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
             let textField = alert?.textFields![0]
             
             guard let fileNames = self.userDefault.stringArray(forKey: "listPhotosAlbum") else {
+                return
+            }
+            
+            if textField?.text == "" {
+                let alert = UIAlertController(title: "Error", message: "Please enter album name", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                self.present(alert, animated: true)
                 return
             }
             

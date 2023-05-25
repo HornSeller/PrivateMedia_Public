@@ -54,7 +54,33 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
         }
         dismiss(animated: true)
     }
-    
+    enum Mode {
+        case view
+        case select
+    }
+    var mMode: Mode = .view {
+        didSet {
+            switch mMode {
+            case .view:
+                selectBarButton.title = "Select"
+                collectionView.allowsMultipleSelection = false
+                toolBarImgView.isHidden = true
+                deleteBtn.isHidden = true
+                shareBtn.isHidden = true
+                addFromGalleryBtn.isHidden = false
+                takePhotoBtn.isHidden = false
+            case .select:
+                selectBarButton.title = "Cancel"
+                collectionView.allowsMultipleSelection = true
+                toolBarImgView.isHidden = false
+                deleteBtn.isHidden = false
+                shareBtn.isHidden = false
+                addFromGalleryBtn.isHidden = true
+                takePhotoBtn.isHidden = true
+            }
+        }
+    }
+    var selectBarButton: UIBarButtonItem!
     var fileManager = FileManager.default
     var name = ""
     var photosName: [String] = []
@@ -88,7 +114,13 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
         guard let image = UIImage(contentsOfFile: imageURL.path) else {
             return
         }
-        self.navigationController?.pushViewController(ShowImageViewController.cellTapped(image: image, imageName: imageName, fileName: self.title!), animated: true)
+        switch mMode {
+        case .view:
+            self.navigationController?.pushViewController(ShowImageViewController.cellTapped(image: image, imageName: imageName, fileName: self.title!), animated: true)
+        case .select:
+            break
+        }
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -121,11 +153,26 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
         }
     }
 
+    @IBOutlet weak var shareBtn: UIButton!
+    @IBOutlet weak var deleteBtn: UIButton!
+    @IBOutlet weak var takePhotoBtn: UIButton!
+    @IBOutlet weak var addFromGalleryBtn: UIButton!
+    @IBOutlet weak var toolBarImgView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         name = self.title!
+        
+        selectBarButton = {
+            let barButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(selectBtnTapped(_:)))
+            barButtonItem.tintColor = .white
+            return barButtonItem
+        }()
+        navigationItem.rightBarButtonItem = selectBarButton
+        
+        collectionView.register(UINib(nibName: "SubPhotosCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "myCell")
+        
         let margin: CGFloat = 10
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -156,6 +203,10 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
         }
     }
     
+    @objc func selectBtnTapped(_ sender: UIBarButtonItem) {
+        mMode = mMode == .view ? .select : .view
+    }
+    
     @objc func handleLongPress(_ recognizer: UILongPressGestureRecognizer) {
         if recognizer.state == .began {
             guard let cell = recognizer.view as? SubPhotosCollectionViewCell else {
@@ -182,6 +233,44 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
             // TODO: Handle long press action
         }
     }
+    
+    @IBAction func deleteBtnTapped(_ sender: UIButton) {
+        if let selectedCell = collectionView.indexPathsForSelectedItems {
+            var count = 0
+            for _ in selectedCell {
+                count += 1
+            }
+            
+            if count == 0 {
+                let alert = UIAlertController(title: "Please choose at least 1 Photo to delete", message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                self.present(alert, animated: true)
+            }
+            
+            let alert = UIAlertController(title: "Do you really want to delete \(count) Album(s)?", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Yes", style: .cancel, handler: { (_) in
+                for indexPath in selectedCell {
+                    do {
+                        try self.fileManager.removeItem(at: (self.albumUrl?.appendingPathComponent(self.photosName[indexPath.row]))!)
+                        self.updatePhotosName()
+                        self.collectionView.reloadData()
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+            self.collectionView.reloadData()
+            }))
+            alert.addAction(UIAlertAction(title: "No", style: .destructive))
+            
+            self.present(alert, animated: true)
+            
+        }
+    }
+    
+    @IBAction func shareBtnTapped(_ sender: UIButton) {
+        print("b")
+    }
+    
     
     @IBAction func addFromGalleryBtnTapped(_ sender: UIButton) {
         var config = PHPickerConfiguration()

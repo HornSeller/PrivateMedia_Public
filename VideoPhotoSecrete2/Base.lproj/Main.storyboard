@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -116,6 +115,37 @@
                                                     <action selector="createAlbumBtnTapped:" destination="AmC-4R-3F7" eventType="touchUpInside" id="OMN-3Y-Qk3"/>
                                                 </connections>
                                             </button>
+                                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="option" translatesAutoresizingMaskIntoConstraints="NO" id="voe-L1-dzd">
+                                                <rect key="frame" x="31" y="45" width="313" height="68"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q68-o7-CT5">
+                                                <rect key="frame" x="61" y="50" width="75" height="58"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="deleteBtnTapped:" destination="AmC-4R-3F7" eventType="touchUpInside" id="kgp-jF-VCG"/>
+                                                </connections>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7cV-cg-BqM">
+                                                <rect key="frame" x="145" y="50" width="75" height="58"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="shareBtnTapped:" destination="AmC-4R-3F7" eventType="touchUpInside" id="Kyt-WE-Ii2"/>
+                                                </connections>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nQB-fy-5SM">
+                                                <rect key="frame" x="236" y="50" width="75" height="58"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="renameBtnTapped:" destination="AmC-4R-3F7" eventType="touchUpInside" id="Y9v-lk-o5V"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
@@ -141,12 +171,17 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addBtn" destination="BYb-F1-JDX" id="p3o-eQ-1gk"/>
                         <outlet property="collectionView" destination="KZp-iN-HSN" id="K6q-nU-Gde"/>
+                        <outlet property="deleteBtn" destination="q68-o7-CT5" id="Q8e-v2-njb"/>
+                        <outlet property="renameBtn" destination="nQB-fy-5SM" id="jSM-dy-y4W"/>
+                        <outlet property="shareBtn" destination="7cV-cg-BqM" id="8SG-Ju-U5W"/>
+                        <outlet property="toolBarImgView" destination="voe-L1-dzd" id="48I-Jl-RHu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aN2-1s-GdD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3277.0992366412211" y="2121.1267605633802"/>
+            <point key="canvasLocation" x="-3277.5999999999999" y="2120.6896551724139"/>
         </scene>
         <!--Show Image View Controller-->
         <scene sceneID="Mzc-ij-kkH">
@@ -222,33 +257,7 @@
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="myCell" id="gth-qN-80Y" customClass="SubPhotosCollectionViewCell" customModule="VideoPhotoSecrete2" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="2Ga-at-c7x">
-                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OUc-jW-vxL">
-                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="OUc-jW-vxL" secondAttribute="height" multiplier="1:1" id="s25-7N-gwv"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="OUc-jW-vxL" firstAttribute="centerY" secondItem="2Ga-at-c7x" secondAttribute="centerY" id="Jjd-xN-JGC"/>
-                                                        <constraint firstItem="OUc-jW-vxL" firstAttribute="height" secondItem="2Ga-at-c7x" secondAttribute="height" id="LhA-Ga-BNR"/>
-                                                        <constraint firstItem="OUc-jW-vxL" firstAttribute="centerX" secondItem="2Ga-at-c7x" secondAttribute="centerX" id="Z9u-B7-Fmo"/>
-                                                        <constraint firstItem="OUc-jW-vxL" firstAttribute="width" secondItem="2Ga-at-c7x" secondAttribute="width" id="gdZ-1X-UqA"/>
-                                                    </constraints>
-                                                </collectionViewCellContentView>
-                                                <connections>
-                                                    <outlet property="imageView" destination="OUc-jW-vxL" id="Umo-Gm-wya"/>
-                                                </connections>
-                                            </collectionViewCell>
-                                        </cells>
+                                        <cells/>
                                         <connections>
                                             <outlet property="dataSource" destination="0MJ-kB-Vx6" id="F8B-9T-vns"/>
                                             <outlet property="delegate" destination="0MJ-kB-Vx6" id="ufT-OF-6aP"/>
@@ -276,6 +285,28 @@
                                                     <action selector="addFromGalleryBtnTapped:" destination="0MJ-kB-Vx6" eventType="touchUpInside" id="GjC-YH-kOM"/>
                                                 </connections>
                                             </button>
+                                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="option1" translatesAutoresizingMaskIntoConstraints="NO" id="JrQ-bb-NFx">
+                                                <rect key="frame" x="64" y="8" width="246" height="81"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zbf-0J-StB">
+                                                <rect key="frame" x="86" y="17" width="98" height="65"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="deleteBtnTapped:" destination="0MJ-kB-Vx6" eventType="touchUpInside" id="LtB-ZM-K2k"/>
+                                                </connections>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A6k-hg-VtL">
+                                                <rect key="frame" x="192" y="17" width="98" height="65"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="shareBtnTapped:" destination="0MJ-kB-Vx6" eventType="touchUpInside" id="nJo-RL-rhr"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
@@ -293,12 +324,17 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addFromGalleryBtn" destination="mch-90-yWT" id="WNB-a1-Cks"/>
                         <outlet property="collectionView" destination="yDT-UK-TgA" id="UnI-yj-Vgr"/>
+                        <outlet property="deleteBtn" destination="Zbf-0J-StB" id="U0N-Br-Pjx"/>
+                        <outlet property="shareBtn" destination="A6k-hg-VtL" id="wQF-II-dOF"/>
+                        <outlet property="takePhotoBtn" destination="yQP-rH-dIr" id="Ad9-VG-0pt"/>
+                        <outlet property="toolBarImgView" destination="JrQ-bb-NFx" id="JFR-Lv-A0l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2cS-FX-PK2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3278" y="2982"/>
+            <point key="canvasLocation" x="-3279.1999999999998" y="2981.5270935960593"/>
         </scene>
         <!--Sub Videos View Controller-->
         <scene sceneID="B7b-3u-sNN">
@@ -851,6 +887,8 @@
         <image name="gallery" width="70" height="70"/>
         <image name="home" width="18" height="19.5"/>
         <image name="more" width="20" height="20"/>
+        <image name="option" width="297" height="56"/>
+        <image name="option1" width="206" height="56"/>
         <image name="setting" width="22" height="22"/>
         <image name="trash" catalog="system" width="117" height="128"/>
         <systemColor name="systemRedColor">
