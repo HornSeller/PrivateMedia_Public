@@ -17,12 +17,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="111" height="167"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="tZ0-OI-qBg">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="tZ0-OI-qBg">
                         <rect key="frame" x="0.0" y="0.0" width="111" height="111"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="tZ0-OI-qBg" secondAttribute="height" multiplier="1:1" id="X8e-ly-j37"/>
-                        </constraints>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
+                    <view hidden="YES" contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x05-Ch-VRK">
+                        <rect key="frame" x="0.0" y="0.0" width="111" height="111"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon check box" translatesAutoresizingMaskIntoConstraints="NO" id="nlk-Eb-raG">
+                                <rect key="frame" x="2" y="85" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Azs-q5-qYu">
                         <rect key="frame" x="0.0" y="119" width="111" height="20"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -37,20 +46,11 @@
                         <color key="textColor" red="0.69019607843137254" green="0.69019607843137254" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon check box" translatesAutoresizingMaskIntoConstraints="NO" id="nlk-Eb-raG">
-                        <rect key="frame" x="3" y="84" width="24" height="24"/>
-                    </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <constraints>
-                <constraint firstItem="nlk-Eb-raG" firstAttribute="leading" secondItem="tZ0-OI-qBg" secondAttribute="leading" id="8XJ-Xo-inY"/>
-                <constraint firstItem="nlk-Eb-raG" firstAttribute="bottom" secondItem="tZ0-OI-qBg" secondAttribute="bottom" id="DKo-eV-YAu"/>
-                <constraint firstItem="tZ0-OI-qBg" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="QrL-bB-1Rj"/>
-                <constraint firstItem="tZ0-OI-qBg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="qs4-OA-pKf"/>
-                <constraint firstItem="tZ0-OI-qBg" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="u7X-We-DbA"/>
-            </constraints>
             <connections>
+                <outlet property="blurView" destination="x05-Ch-VRK" id="AZ9-bM-dvP"/>
                 <outlet property="checkBoxImgView" destination="nlk-Eb-raG" id="q9V-oA-C73"/>
                 <outlet property="countLb" destination="AMs-1S-WQG" id="hpc-4K-DMF"/>
                 <outlet property="imageView" destination="tZ0-OI-qBg" id="BCI-Wn-Jga"/>

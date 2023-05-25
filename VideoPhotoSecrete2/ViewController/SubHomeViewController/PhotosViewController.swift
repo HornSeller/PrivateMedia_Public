@@ -10,10 +10,33 @@ import Kingfisher
 
 class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    enum Mode {
+        case view
+        case select
+    }
     var defaultValue = ["listPhotosAlbum": []]
     let userDefault = UserDefaults.standard
     
     let fileManager = FileManager.default
+    
+    var selectBarButton: UIBarButtonItem!
+    
+    var deleteBarButton: UIBarButtonItem!
+    
+    var mMode: Mode = .view {
+        didSet {
+            switch mMode {
+            case .view:
+                selectBarButton.title = "Select"
+                collectionView.allowsMultipleSelection = false
+            case .select:
+                selectBarButton.title = "Cancel"
+                collectionView.allowsMultipleSelection = true
+            }
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let dataCollectionView = userDefault.stringArray(forKey: "listPhotosAlbum")
         return dataCollectionView!.count
@@ -44,19 +67,40 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
         } catch {
             print(error.localizedDescription)
         }
+        
+//        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+//        cell.addGestureRecognizer(longPressRecognizer)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let nameArray = userDefault.stringArray(forKey: "listPhotosAlbum")
         let name = nameArray![indexPath.row]
-        self.navigationController?.pushViewController(SubPhotosViewController.makeSelf(name: name), animated: true)
+        
+        switch mMode {
+        case .view:
+            self.navigationController?.pushViewController(SubPhotosViewController.makeSelf(name: name), animated: true)
+        case .select:
+            break
+        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         //userDefault.removeObject(forKey: "listPhotosAlbum")
+        
+        selectBarButton = {
+            let barButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(selectBtnTapped(_:)))
+            return barButtonItem
+        }()
+        
+        deleteBarButton = {
+            let barButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteBtnTapped(_:)))
+            return barButtonItem
+        }()
+        
         // tạo folder Photos tại lần đầu tiên sử dụng app
+        
         guard let documentURL = self.fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
             return
         }
@@ -79,7 +123,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
                     NSAttributedString.Key.foregroundColor: UIColor.white,
                     NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20)
                 ]
-        
+        navigationItem.rightBarButtonItem = selectBarButton
         collectionView.register(UINib(nibName: "PhotosCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "myCell")
         
         let margin: CGFloat = 10
@@ -100,6 +144,38 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         collectionView.reloadData()
+    }
+    
+    @objc func selectBtnTapped(_ sender: UIBarButtonItem) {
+        mMode = mMode == .view ? .select : .view
+    }
+    
+    @objc func deleteBtnTapped(_ sender: UIBarButtonItem) {
+        
+    }
+    
+//    @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
+//        if gestureRecognizer.state == .began {
+//            guard let cell = gestureRecognizer.view as? PhotosCollectionViewCell else {
+//                return
+//            }
+//            let touchPoint = gestureRecognizer.location(in: collectionView)
+//
+//            // Tìm indexPath của ô (cell) tại điểm chạm
+//            if let indexPath = collectionView.indexPathForItem(at: touchPoint) {
+//                if let cell = collectionView.cellForItem(at: indexPath) as? PhotosCollectionViewCell {
+//                    cell.isSelected = true
+//                    cell.backgroundColor = .red
+//                }
+//            }
+//            collectionView.allowsMultipleSelection = true
+//        }
+//    }
+    
+    func toggleSelectionForCell(at indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? PhotosCollectionViewCell {
+            cell.isSelected = !cell.isSelected
+        }
     }
     
     @IBAction func backBtnTapped(_ sender: UIBarButtonItem) {

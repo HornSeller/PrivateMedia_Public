@@ -26,7 +26,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 //        cell.layer.shadowOffset = CGSize(width: 2, height: 2) // Kích thước của đổ bóng cell
 //        cell.layer.shadowOpacity = 0.3 // Độ đậm của đổ bóng cell
 //        cell.layer.shadowRadius = 2.5 // Độ cong của đổ bóng cell
-        cell.backgroundColor = .black
         cell.alpha = 0.9
         return cell
     }
