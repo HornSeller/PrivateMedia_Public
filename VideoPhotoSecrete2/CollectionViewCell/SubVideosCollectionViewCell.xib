@@ -20,6 +20,16 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ellipse 1" translatesAutoresizingMaskIntoConstraints="NO" id="dcO-kl-3mu">
                         <rect key="frame" x="0.0" y="0.0" width="111" height="111"/>
                     </imageView>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xct-Z2-nag">
+                        <rect key="frame" x="0.0" y="0.0" width="111" height="111"/>
+                        <subviews>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon check box" translatesAutoresizingMaskIntoConstraints="NO" id="18w-Wc-aBo">
+                                <rect key="frame" x="2" y="89" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yL0-F9-VS4">
                         <rect key="frame" x="61" y="87" width="45" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
@@ -40,12 +50,18 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="xct-Z2-nag" secondAttribute="bottom" id="LPj-66-1Yt"/>
+                <constraint firstAttribute="trailing" secondItem="xct-Z2-nag" secondAttribute="trailing" id="NTN-7z-L1k"/>
                 <constraint firstItem="dcO-kl-3mu" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="We6-W7-VeT"/>
                 <constraint firstAttribute="trailing" secondItem="dcO-kl-3mu" secondAttribute="trailing" id="acj-BT-QBK"/>
+                <constraint firstItem="xct-Z2-nag" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="aml-rm-Mcq"/>
+                <constraint firstItem="xct-Z2-nag" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="wC5-As-tYY"/>
                 <constraint firstItem="dcO-kl-3mu" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="whz-oR-zTb"/>
                 <constraint firstAttribute="bottom" secondItem="dcO-kl-3mu" secondAttribute="bottom" id="yfB-Uo-iYF"/>
             </constraints>
             <connections>
+                <outlet property="blurView" destination="xct-Z2-nag" id="IjE-gC-K1r"/>
+                <outlet property="iconCheckBoxImg" destination="18w-Wc-aBo" id="1Lw-H3-pQS"/>
                 <outlet property="imageView" destination="dcO-kl-3mu" id="r6n-TI-DyT"/>
                 <outlet property="label" destination="cls-pd-qVZ" id="SnS-zZ-UsU"/>
                 <outlet property="subImageView" destination="yL0-F9-VS4" id="5Qg-zP-NbF"/>
@@ -56,5 +72,6 @@
     <resources>
         <image name="Ellipse 1" width="780" height="550"/>
         <image name="Icon" width="7" height="9.3333330154418945"/>
+        <image name="icon check box" width="24" height="24"/>
     </resources>
 </document>

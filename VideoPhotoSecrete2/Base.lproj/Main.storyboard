@@ -385,6 +385,28 @@
                                                     <action selector="takeVideoBtnTapped:" destination="rJO-Fj-CXG" eventType="touchUpInside" id="An2-Fx-C2j"/>
                                                 </connections>
                                             </button>
+                                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="option1" translatesAutoresizingMaskIntoConstraints="NO" id="exn-fj-JnF">
+                                                <rect key="frame" x="64" y="0.0" width="246" height="81"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bT1-5w-9Vb">
+                                                <rect key="frame" x="82" y="8" width="103" height="65"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="deleteBtnTapped:" destination="rJO-Fj-CXG" eventType="touchUpInside" id="571-gh-5QD"/>
+                                                </connections>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ocA-Ak-gAp">
+                                                <rect key="frame" x="192" y="8" width="103" height="65"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="shareBtnTapped:" destination="rJO-Fj-CXG" eventType="touchUpInside" id="TFZ-jm-uMB"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
@@ -402,12 +424,23 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addFromGalleryBtn" destination="qDu-Hg-emZ" id="GJg-1I-Kdu"/>
                         <outlet property="collectionView" destination="hh7-uE-w27" id="d8i-5m-YEd"/>
+                        <outlet property="deleteBtn" destination="bT1-5w-9Vb" id="BwA-7z-Dg5"/>
+                        <outlet property="shareBtn" destination="ocA-Ak-gAp" id="vp3-Nt-8Db"/>
+                        <outlet property="takeVideoBtn" destination="bgw-JY-0ug" id="mSY-xa-P4A"/>
+                        <outlet property="toolBarImgView" destination="exn-fj-JnF" id="QQp-nG-dCr"/>
                     </connections>
                 </viewController>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="cbm-By-Pof">
+                    <rect key="frame" x="0.0" y="0.0" width="103" height="65"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain"/>
+                </button>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iIn-kP-PJY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2450" y="2982"/>
+            <point key="canvasLocation" x="-2450.4000000000001" y="2981.5270935960593"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="blc-zX-irV">

@@ -56,6 +56,34 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
         dismiss(animated: true)
     }
     
+    enum Mode {
+        case view
+        case select
+    }
+    var mMode: Mode = .view {
+        didSet {
+            switch mMode {
+            case .view:
+                selectBarButton.title = "Select"
+                collectionView.allowsMultipleSelection = false
+                toolBarImgView.isHidden = true
+                deleteBtn.isHidden = true
+                shareBtn.isHidden = true
+                addFromGalleryBtn.isHidden = false
+                takeVideoBtn.isHidden = false
+            case .select:
+                selectBarButton.title = "Cancel"
+                collectionView.allowsMultipleSelection = true
+                toolBarImgView.isHidden = false
+                deleteBtn.isHidden = false
+                shareBtn.isHidden = false
+                addFromGalleryBtn.isHidden = true
+                takeVideoBtn.isHidden = true
+            }
+        }
+    }
+    
+    var selectBarButton: UIBarButtonItem!
     var imageForCellURL: URL?
     var fileManager = FileManager.default
     var name = ""
@@ -64,6 +92,13 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
     var videos: [URL] = []
     let videoPicker = UIImagePickerController()
     var albumUrl: URL?
+    
+    @IBOutlet weak var shareBtn: UIButton!
+    @IBOutlet weak var deleteBtn: UIButton!
+    @IBOutlet weak var takeVideoBtn: UIButton!
+    @IBOutlet weak var addFromGalleryBtn: UIButton!
+    @IBOutlet weak var toolBarImgView: UIImageView!
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         videosName.count
@@ -84,12 +119,18 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let player = AVPlayer(url: (albumUrl?.appendingPathComponent(videosName[indexPath.row]))!)
-        let playerViewController = AVPlayerViewController()
-        playerViewController.player = player
-        present(playerViewController, animated: true) {
-            player.play()
+        switch mMode {
+        case .view:
+            let player = AVPlayer(url: (albumUrl?.appendingPathComponent(videosName[indexPath.row]))!)
+            let playerViewController = AVPlayerViewController()
+            playerViewController.player = player
+            present(playerViewController, animated: true) {
+                player.play()
+            }
+        case .select:
+            break
         }
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -105,7 +146,12 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
     override func viewDidLoad() {
         super.viewDidLoad()
         name = self.title!
-        
+        selectBarButton = {
+            let barButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(selectBtnTapped(_:)))
+            barButtonItem.tintColor = .white
+            return barButtonItem
+        }()
+        navigationItem.rightBarButtonItem = selectBarButton
         // tạo folder ImageForCell tại lần đầu tiên sử dụng app
 //        guard let documentURL = self.fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
 //            return
@@ -168,6 +214,16 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
         videoPicker.mediaTypes = [kUTTypeMovie as String]
         videoPicker.delegate = self
         present(videoPicker, animated: true)
+    }
+    
+    @IBAction func deleteBtnTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func shareBtnTapped(_ sender: UIButton) {
+    }
+    
+    @objc func selectBtnTapped(_ sender: UIBarButtonItem) {
+        mMode = mMode == .view ? .select : .view
     }
     
     @objc func handleLongPress(_ recognizer: UILongPressGestureRecognizer) {
