@@ -235,23 +235,25 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
     }
     
     @IBAction func deleteBtnTapped(_ sender: UIButton) {
+        var indexArr: [Int] = []
         if let selectedCell = collectionView.indexPathsForSelectedItems {
-            var count = 0
-            for _ in selectedCell {
-                count += 1
+            for indexPath in selectedCell.reversed() {
+                indexArr.append(indexPath.row)
             }
             
-            if count == 0 {
+            indexArr.sort(by: >)
+            
+            if indexArr.count == 0 {
                 let alert = UIAlertController(title: "Please choose at least 1 Photo to delete", message: nil, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel))
                 self.present(alert, animated: true)
             }
             
-            let alert = UIAlertController(title: "Do you really want to delete \(count) Album(s)?", message: nil, preferredStyle: .alert)
+            let alert = UIAlertController(title: "Do you really want to delete \(indexArr.count) Photo(s)?", message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Yes", style: .cancel, handler: { (_) in
-                for indexPath in selectedCell {
+                for index in indexArr {
                     do {
-                        try self.fileManager.removeItem(at: (self.albumUrl?.appendingPathComponent(self.photosName[indexPath.row]))!)
+                        try self.fileManager.removeItem(at: (self.albumUrl?.appendingPathComponent(self.photosName[index]))!)
                         self.updatePhotosName()
                         self.collectionView.reloadData()
                     } catch {
