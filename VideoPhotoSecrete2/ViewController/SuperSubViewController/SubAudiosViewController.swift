@@ -20,6 +20,28 @@ class SubAudiosViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.titleLb.text = nameArray[indexPath.row]
         cell.durationLb.text = getAudioDuration(url: (albumUrl?.appendingPathComponent(audiosName[indexPath.row]))!)
         cell.backgroundColor = UIColor.clear
+        
+        cell.menuBtn.showsMenuAsPrimaryAction = true
+        cell.menuBtn.menu = UIMenu(title: "", options: .displayInline, children: [
+            UIAction(title: "Delete", handler: { (_) in
+                do {
+                    try self.fileManager.removeItem(at: (self.albumUrl?.appendingPathComponent(self.audiosName[indexPath.row]))!)
+                    self.updateAudiosName()
+                    self.nameArray.removeAll()
+                    for audioName in self.audiosName {
+                        self.nameArray.append(self.splitName(name: audioName)!)
+                    }
+                    tableView.reloadData()
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }),
+           
+            UIAction(title: "Share", handler: { (_) in
+                print("c")
+            })
+            
+        ])
         return cell
     }
     
@@ -51,21 +73,15 @@ class SubAudiosViewController: UIViewController, UITableViewDelegate, UITableVie
             do {
                 print(url)
                 let fileName = url.lastPathComponent
-                let components = fileName.components(separatedBy: ".")
-                if components.count > 1 {
-                    let nameWithoutExtension = components[0]
-                    let fileExtension = components.last
-                    let name = "\(formatter.string(from: Date()))'\(nameWithoutExtension).\(fileExtension ?? "mp3")"
-                    print(name)
-                    let fileUrl = folderUrl.appendingPathComponent(name)
-                    try fileManager.moveItem(at: url, to: fileUrl)
-                    updateAudiosName()
-                    nameArray.removeAll()
-                    for audioName in audiosName {
-                        nameArray.append(splitName(name: audioName)!)
-                    }
-                    tableView.reloadData()
+                let name = "\(formatter.string(from: Date()))'\(fileName)"
+                let fileUrl = folderUrl.appendingPathComponent(name)
+                try fileManager.moveItem(at: url, to: fileUrl)
+                updateAudiosName()
+                nameArray.removeAll()
+                for audioName in audiosName {
+                    nameArray.append(splitName(name: audioName)!)
                 }
+                tableView.reloadData()
             } catch {
                 print(error.localizedDescription)
             }

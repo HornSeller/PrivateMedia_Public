@@ -59,6 +59,32 @@ class SubDocumentsViewController: UIViewController, UITableViewDelegate, UITable
 
         cell.backgroundColor = UIColor.clear
         
+        cell.menuBtn.showsMenuAsPrimaryAction = true
+        cell.menuBtn.menu = UIMenu(title: "", options: .displayInline, children: [
+            UIAction(title: "Delete", handler: { (_) in
+                do {
+                    try self.fileManager.removeItem(at: (self.albumUrl?.appendingPathComponent(self.documentsName[indexPath.row]))!)
+                    self.updateDocumentsName()
+                    self.nameArray.removeAll()
+                    for documentName in self.documentsName {
+                        self.nameArray.append(self.splitName(name: documentName)!)
+                    }
+                    tableView.reloadData()
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }),
+            
+            UIAction(title: "Rename", handler: { (_) in
+                print("b")
+            }),
+            
+            UIAction(title: "Share", handler: { (_) in
+                print("c")
+            })
+            
+        ])
+        
         return cell
     }
     

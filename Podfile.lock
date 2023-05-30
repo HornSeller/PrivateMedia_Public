@@ -1,16 +1,20 @@
 PODS:
   - Kingfisher (7.6.2)
+  - PasscodeKit (1.0.1)
 
 DEPENDENCIES:
   - Kingfisher (~> 7.0)
+  - PasscodeKit
 
 SPEC REPOS:
   trunk:
     - Kingfisher
+    - PasscodeKit
 
 SPEC CHECKSUMS:
   Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
+  PasscodeKit: 495d98d2d5e68c5e34c58917b4022eba66182616
 
-PODFILE CHECKSUM: 23bcbb7b34a643a98be26335a32811f7e29faf5e
+PODFILE CHECKSUM: 9ed9517082160e25c02e7b9b6f149ee39b349c84
 
 COCOAPODS: 1.12.0

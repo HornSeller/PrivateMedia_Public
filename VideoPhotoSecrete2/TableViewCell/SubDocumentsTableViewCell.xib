@@ -42,16 +42,27 @@
                         <rect key="frame" x="20" y="11" width="50" height="58"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wXn-09-Wsk">
+                        <rect key="frame" x="320" y="18" width="38" height="44"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="circle"/>
+                    </button>
                 </subviews>
+                <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="dateLb" destination="NjS-39-Y5j" id="zmx-ny-flk"/>
                 <outlet property="imgView" destination="XyB-3x-AcV" id="kpi-6q-jDU"/>
+                <outlet property="menuBtn" destination="wXn-09-Wsk" id="cHv-ts-swr"/>
                 <outlet property="sizeLb" destination="aWx-me-SG3" id="n5p-B5-4J8"/>
                 <outlet property="titleLb" destination="hEu-8w-bE5" id="KVQ-Tp-IrB"/>
             </connections>
             <point key="canvasLocation" x="10.687022900763358" y="-11.267605633802818"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="circle" width="16" height="16.333333969116211"/>
+    </resources>
 </document>

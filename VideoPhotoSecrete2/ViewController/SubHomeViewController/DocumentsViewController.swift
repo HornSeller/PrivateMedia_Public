@@ -33,6 +33,30 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
             print(error.localizedDescription)
         }
         
+        cell.menuBtn.showsMenuAsPrimaryAction = true
+        cell.menuBtn.menu = UIMenu(title: "", options: .displayInline, children: [
+            UIAction(title: "Delete", handler: { (_) in
+                do {
+                    try self.fileManager.removeItem(at: folderURL!)
+                    self.albumNameArray.remove(at: indexPath.row)
+                    print(self.albumNameArray)
+                    self.userDefault.setValue(self.albumNameArray, forKey: "listDocumentsAlbum")
+                    tableView.reloadData()
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }),
+            
+            UIAction(title: "Rename", handler: { (_) in
+                print("b")
+            }),
+            
+            UIAction(title: "Share", handler: { (_) in
+                print("c")
+            })
+            
+        ])
+        
         return cell
     }
     

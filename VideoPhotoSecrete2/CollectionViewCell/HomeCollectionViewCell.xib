@@ -17,6 +17,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="171" height="171"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aqa-fl-tvD">
+                        <rect key="frame" x="0.0" y="0.0" width="171" height="171"/>
+                        <color key="backgroundColor" white="0.046370110544217684" alpha="0.20260761589403972" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yGa-iO-Gtd">
                         <rect key="frame" x="26" y="7" width="118" height="118"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -32,6 +36,12 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.79529971168154767" colorSpace="custom" customColorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Aqa-fl-tvD" secondAttribute="trailing" id="3tm-jp-ULe"/>
+                <constraint firstItem="Aqa-fl-tvD" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="G7h-H0-dXX"/>
+                <constraint firstItem="Aqa-fl-tvD" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="uov-Cs-b9N"/>
+                <constraint firstAttribute="bottom" secondItem="Aqa-fl-tvD" secondAttribute="bottom" id="x85-vb-E3z"/>
+            </constraints>
             <size key="customSize" width="171" height="349"/>
             <connections>
                 <outlet property="imageView" destination="yGa-iO-Gtd" id="Gt1-6v-fo8"/>

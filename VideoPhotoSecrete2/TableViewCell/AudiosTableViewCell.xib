@@ -35,18 +35,27 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azo-8L-jzT">
+                        <rect key="frame" x="320" y="24" width="38" height="44"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="circle"/>
+                    </button>
                 </subviews>
+                <color key="backgroundColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="countLb" destination="FBv-bq-nF3" id="zla-XX-vGd"/>
                 <outlet property="imgView" destination="2xf-K8-YiW" id="spx-1S-r9x"/>
+                <outlet property="menuBtn" destination="azo-8L-jzT" id="FbG-JA-oXb"/>
                 <outlet property="titleLb" destination="15D-Fi-HIa" id="dw8-d3-TyH"/>
             </connections>
             <point key="canvasLocation" x="129.7709923664122" y="-11.619718309859156"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="circle" width="16" height="16.333333969116211"/>
         <image name="thumbnail" width="90" height="77"/>
     </resources>
 </document>

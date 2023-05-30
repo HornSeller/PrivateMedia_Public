@@ -9,6 +9,7 @@ import UIKit
 
 class SubAudiosTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var durationLb: UILabel!
     @IBOutlet weak var titleLb: UILabel!
     override func awakeFromNib() {

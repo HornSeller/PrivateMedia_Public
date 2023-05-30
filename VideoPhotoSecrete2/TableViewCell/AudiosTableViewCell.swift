@@ -9,6 +9,7 @@ import UIKit
 
 class AudiosTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var countLb: UILabel!
     @IBOutlet weak var titleLb: UILabel!
     @IBOutlet weak var imgView: UIImageView!

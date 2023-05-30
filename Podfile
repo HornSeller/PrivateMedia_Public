@@ -8,5 +8,6 @@ target 'VideoPhotoSecrete2' do
   # Pods for VideoPhotoSecrete2
 
 pod 'Kingfisher', '~> 7.0'
+pod 'PasscodeKit'
 
 end

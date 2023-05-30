@@ -14,19 +14,43 @@ class AudiosViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let dataTable = userDefault.stringArray(forKey: "listAudiosAlbum")
+        var dataTable: [String] = userDefault.stringArray(forKey: "listAudiosAlbum")!
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! AudiosTableViewCell
         cell.backgroundColor = UIColor.clear
-        cell.titleLb.text = dataTable![indexPath.row]
+        cell.titleLb.text = dataTable[indexPath.row]
         let documentURL = self.fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
         let audiosURL = documentURL!.appendingPathComponent("Audios")
-        let albumURL = audiosURL.appendingPathComponent(dataTable![indexPath.row])
+        let albumURL = audiosURL.appendingPathComponent(dataTable[indexPath.row])
         do {
             let filesList = try fileManager.contentsOfDirectory(atPath: albumURL.path)
             cell.countLb.text = String(filesList.count)
         } catch {
             print(error.localizedDescription)
         }
+        
+        cell.menuBtn.showsMenuAsPrimaryAction = true
+        cell.menuBtn.menu = UIMenu(title: "", options: .displayInline, children: [
+            UIAction(title: "Delete", handler: { (_) in
+                do {
+                    try self.fileManager.removeItem(at: albumURL)
+                    dataTable.remove(at: indexPath.row)
+                    print(dataTable)
+                    self.userDefault.setValue(dataTable, forKey: "listAudiosAlbum")
+                    tableView.reloadData()
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }),
+            
+            UIAction(title: "Rename", handler: { (_) in
+                print("b")
+            }),
+            
+            UIAction(title: "Share", handler: { (_) in
+                print("c")
+            })
+            
+        ])
         return cell
     }
     

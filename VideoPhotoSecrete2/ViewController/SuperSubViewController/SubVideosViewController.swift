@@ -39,6 +39,7 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
 //                            if let imageData = image!.jpegData(compressionQuality: 1.0) {
 //                                try? imageData.write(to: videoURLforImageFolder!)
 //                            }
+                            generateThumbnail(path: videoURL)
                             self.updateVideosName()
                             //self.updateListImage()
                             DispatchQueue.main.async {
@@ -107,8 +108,17 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath) as! SubVideosCollectionViewCell
         
-        let thumbnail = generateThumbnail(path: (albumUrl?.appendingPathComponent(videosName[indexPath.row]))!)
-        cell.imageView.image = thumbnail
+        ImageCache.default.retrieveImage(forKey: albumUrl?.appendingPathComponent(videosName[indexPath.row]).path ?? "", options: nil) { result in
+            switch result {
+                case .success(let value):
+                cell.imageView.image = value.image
+                break
+                case .failure(let error):
+                    print(error)
+                break
+            }
+        }
+        
         let videoDuration = getVideoDuration(url: (albumUrl?.appendingPathComponent(videosName[indexPath.row]))!)
         cell.label.text = videoDuration
         
@@ -217,6 +227,38 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     @IBAction func deleteBtnTapped(_ sender: UIButton) {
+        var indexArr: [Int] = []
+        if let selectedCell = collectionView.indexPathsForSelectedItems {
+            for indexPath in selectedCell.reversed() {
+                indexArr.append(indexPath.row)
+            }
+            
+            indexArr.sort(by: >)
+            
+            if indexArr.count == 0 {
+                let alert = UIAlertController(title: "Please choose at least 1 Video to delete", message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                self.present(alert, animated: true)
+            }
+            
+            let alert = UIAlertController(title: "Do you really want to delete \(indexArr.count) Video(s)?", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Yes", style: .cancel, handler: { (_) in
+                for index in indexArr {
+                    do {
+                        try self.fileManager.removeItem(at: (self.albumUrl?.appendingPathComponent(self.videosName[index]))!)
+                        self.updateVideosName()
+                        self.collectionView.reloadData()
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+            self.collectionView.reloadData()
+            }))
+            alert.addAction(UIAlertAction(title: "No", style: .destructive))
+            
+            self.present(alert, animated: true)
+            
+        }
     }
     
     @IBAction func shareBtnTapped(_ sender: UIButton) {
@@ -224,6 +266,7 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
     
     @objc func selectBtnTapped(_ sender: UIBarButtonItem) {
         mMode = mMode == .view ? .select : .view
+        collectionView.reloadData()
     }
     
     @objc func handleLongPress(_ recognizer: UILongPressGestureRecognizer) {
@@ -317,11 +360,16 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func generateThumbnail(path: URL) -> UIImage? {
+        if ImageCache.default.isCached(forKey: path.path) {
+            return nil
+        }
         let asset = AVAsset(url: path)
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         do {
             let cgImage = try imageGenerator.copyCGImage(at: CMTime(seconds: 0, preferredTimescale: 1), actualTime: nil)
             let thumbnail = UIImage(cgImage: cgImage)
+            ImageCache.default.store(thumbnail, forKey: path.path)
+            
             return thumbnail
         } catch {
             print(error.localizedDescription)

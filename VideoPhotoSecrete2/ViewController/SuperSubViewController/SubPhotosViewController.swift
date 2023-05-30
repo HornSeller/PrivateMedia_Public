@@ -141,7 +141,7 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
         let photosURL = documentsDirectory.appendingPathComponent("Photos")
         let photosDirectory = photosURL.appendingPathComponent(name)
         albumUrl = photosDirectory
-        print(albumUrl)
+        print(albumUrl!.path)
         do {
             self.photosName = try fileManager.contentsOfDirectory(atPath: photosDirectory.path)
             self.photosName.sort { (lhs: String, rhs: String) -> Bool in
@@ -205,6 +205,7 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
     
     @objc func selectBtnTapped(_ sender: UIBarButtonItem) {
         mMode = mMode == .view ? .select : .view
+        collectionView.reloadData()
     }
     
     @objc func handleLongPress(_ recognizer: UILongPressGestureRecognizer) {

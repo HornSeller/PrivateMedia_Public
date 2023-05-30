@@ -29,6 +29,8 @@
 		9A9E5EC82A0C8F2C008CBAD9 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E5EC62A0C8F2C008CBAD9 /* PhotosCollectionViewCell.swift */; };
 		9A9E5EC92A0C8F2C008CBAD9 /* PhotosCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9E5EC72A0C8F2C008CBAD9 /* PhotosCollectionViewCell.xib */; };
 		9A9E5ECC2A0CAB1F008CBAD9 /* SubPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E5ECB2A0CAB1F008CBAD9 /* SubPhotosViewController.swift */; };
+		9AA265BF2A25998F00E84429 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA265BE2A25998F00E84429 /* MoreViewController.swift */; };
+		9AA265C32A25F2CF00E84429 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA265C22A25F2CF00E84429 /* SettingViewController.swift */; };
 		9AA45B3B2A0B32F8007A2A18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA45B3A2A0B32F8007A2A18 /* AppDelegate.swift */; };
 		9AA45B3D2A0B32F8007A2A18 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA45B3C2A0B32F8007A2A18 /* SceneDelegate.swift */; };
 		9AA45B422A0B32F8007A2A18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AA45B402A0B32F8007A2A18 /* Main.storyboard */; };
@@ -68,6 +70,8 @@
 		9A9E5EC62A0C8F2C008CBAD9 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		9A9E5EC72A0C8F2C008CBAD9 /* PhotosCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotosCollectionViewCell.xib; sourceTree = "<group>"; };
 		9A9E5ECB2A0CAB1F008CBAD9 /* SubPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubPhotosViewController.swift; sourceTree = "<group>"; };
+		9AA265BE2A25998F00E84429 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
+		9AA265C22A25F2CF00E84429 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		9AA45B372A0B32F8007A2A18 /* VideoPhotoSecrete2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoPhotoSecrete2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA45B3A2A0B32F8007A2A18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AA45B3C2A0B32F8007A2A18 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -205,6 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				9AA45B542A0B3C45007A2A18 /* HomeViewController.swift */,
+				9AA265C22A25F2CF00E84429 /* SettingViewController.swift */,
+				9AA265BE2A25998F00E84429 /* MoreViewController.swift */,
 			);
 			path = MenuViewController;
 			sourceTree = "<group>";
@@ -354,11 +360,13 @@
 				9AA45B5F2A0B4A41007A2A18 /* DocumentsViewController.swift in Sources */,
 				9A973B702A1319EA00FE96B5 /* SubAudiosViewController.swift in Sources */,
 				9A9E5EC82A0C8F2C008CBAD9 /* PhotosCollectionViewCell.swift in Sources */,
+				9AA265C32A25F2CF00E84429 /* SettingViewController.swift in Sources */,
 				9A973B722A1319F700FE96B5 /* SubDocumentsViewController.swift in Sources */,
 				9AA45B3B2A0B32F8007A2A18 /* AppDelegate.swift in Sources */,
 				9AA45B3D2A0B32F8007A2A18 /* SceneDelegate.swift in Sources */,
 				9AA45B512A0B3AAE007A2A18 /* HomeCollectionViewCell.swift in Sources */,
 				9A97ECB22A1F6262002F5BF2 /* SubPhotosCollectionViewCell.swift in Sources */,
+				9AA265BF2A25998F00E84429 /* MoreViewController.swift in Sources */,
 				9A973B752A131AB900FE96B5 /* DocumentsTableViewCell.swift in Sources */,
 				9AA45B552A0B3C45007A2A18 /* HomeViewController.swift in Sources */,
 				9AA45B5D2A0B4A38007A2A18 /* AudiosViewController.swift in Sources */,

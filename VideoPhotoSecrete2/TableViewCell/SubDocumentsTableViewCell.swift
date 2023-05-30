@@ -9,6 +9,7 @@ import UIKit
 
 class SubDocumentsTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var sizeLb: UILabel!
     @IBOutlet weak var dateLb: UILabel!

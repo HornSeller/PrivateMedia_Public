@@ -42,11 +42,19 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nyW-SG-Aqw">
+                        <rect key="frame" x="320" y="14" width="38" height="44"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="circle"/>
+                    </button>
                 </subviews>
+                <color key="backgroundColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="dateLb" destination="zLN-is-0Up" id="V0s-rg-PA3"/>
+                <outlet property="menuBtn" destination="nyW-SG-Aqw" id="f8L-cZ-wrO"/>
                 <outlet property="sizeLb" destination="nYS-1e-bP0" id="Cdn-vh-vbL"/>
                 <outlet property="titleLb" destination="mE1-e6-SVZ" id="eK0-9Y-iWH"/>
             </connections>
@@ -55,5 +63,6 @@
     </objects>
     <resources>
         <image name="Object" width="36" height="31"/>
+        <image name="circle" width="16" height="16.333333969116211"/>
     </resources>
 </document>

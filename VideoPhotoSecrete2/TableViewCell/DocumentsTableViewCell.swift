@@ -9,6 +9,7 @@ import UIKit
 
 class DocumentsTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var sizeLb: UILabel!
     @IBOutlet weak var dateLb: UILabel!
     @IBOutlet weak var titleLb: UILabel!
