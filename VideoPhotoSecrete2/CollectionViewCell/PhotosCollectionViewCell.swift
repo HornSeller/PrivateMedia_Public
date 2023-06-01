@@ -19,7 +19,9 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         blurView.layer.borderWidth = 0.1
-        blurView.layer.cornerRadius = 10
+        blurView.layer.cornerRadius = 9
+        imageView.layer.borderWidth = 0.1
+        imageView.layer.cornerRadius = 9
     }
 
     override var isHighlighted: Bool {

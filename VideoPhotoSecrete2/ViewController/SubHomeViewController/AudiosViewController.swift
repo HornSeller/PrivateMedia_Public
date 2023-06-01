@@ -43,11 +43,45 @@ class AudiosViewController: UIViewController, UITableViewDataSource, UITableView
             }),
             
             UIAction(title: "Rename", handler: { (_) in
-                print("b")
+                let oldFolderUrl = albumURL
+                let alert = UIAlertController(title: "Enter the new name", message: nil, preferredStyle: .alert)
+                alert.addTextField()
+                alert.addAction(UIAlertAction(title: "Rename", style: .cancel, handler: { [weak alert] (_) in
+                    let textField = alert?.textFields![0]
+                    if textField?.text == "" {
+                        let alert = UIAlertController(title: "Error", message: "Please enter album name", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                        self.present(alert, animated: true)
+                        return
+                    }
+                    let newFolderUrl = audiosURL.appendingPathComponent(textField!.text!)
+                    do {
+                        try self.fileManager.moveItem(at: oldFolderUrl, to: newFolderUrl)
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                    var dataTable = self.userDefault.stringArray(forKey: "listAudiosAlbum")
+                    dataTable![indexPath.row] = (textField?.text)!
+                    self.userDefault.set(dataTable, forKey: "listAudiosAlbum")
+                    self.tableView.reloadData()
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .destructive))
+                self.present(alert, animated: true)
             }),
             
             UIAction(title: "Share", handler: { (_) in
-                print("c")
+                let selectedAlbumUrl = audiosURL.appendingPathComponent(dataTable[indexPath.row])
+                var filesToShare: [Any] = []
+                do {
+                    let audiosName = try self.fileManager.contentsOfDirectory(atPath: selectedAlbumUrl.path)
+                    for audioName in audiosName {
+                        filesToShare.append(selectedAlbumUrl.appendingPathComponent(audioName))
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                }
+                let activityViewController = UIActivityViewController(activityItems: filesToShare, applicationActivities: nil)
+                self.present(activityViewController, animated: true, completion: nil)
             })
             
         ])
@@ -99,7 +133,7 @@ class AudiosViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     @IBAction func createAlbumBtnTapped(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Create album", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Create album", message: nil, preferredStyle: .alert)
         alert.addTextField(){ (textfield) in
             textfield.placeholder = "Enter album name here"
         }

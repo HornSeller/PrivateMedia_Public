@@ -73,8 +73,6 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
                 }
                 let lastImage = albumUrl.appendingPathComponent(fileList[fileList.count - 1])
                 cell.imageView.image = UIImage(contentsOfFile: lastImage.path)
-                cell.imageView.layer.borderWidth = 0.1
-                cell.imageView.layer.cornerRadius = 15
             }
         } catch {
             print(error.localizedDescription)
@@ -156,6 +154,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     @objc func selectBtnTapped(_ sender: UIBarButtonItem) {
         mMode = mMode == .view ? .select : .view
+        collectionView.reloadData()
     }
     
 //    @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
@@ -227,20 +226,79 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
             
             self.present(alert, animated: true)
         }
-        print(userDefault.stringArray(forKey: "listPhotosAlbum"))
-        
     }
     
     @IBAction func shareBtnTapped(_ sender: UIButton) {
-        print("b")
+        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
+        let photosUrl = documentsUrl!.appendingPathComponent("Photos")
+        let albumsName: [String] = userDefault.stringArray(forKey: "listPhotosAlbum")!
+        var selectedAlbums: [String] = []
+        var filesToShare: [Any] = []
+        if let selectedCell = collectionView.indexPathsForSelectedItems {
+            for indexPath in selectedCell {
+                selectedAlbums.append(albumsName[indexPath.row])
+            }
+            for selectedAlbum in selectedAlbums {
+                do {
+                    let selectedAlbumUrl = photosUrl.appendingPathComponent(selectedAlbum)
+                    let imagesName = try fileManager.contentsOfDirectory(atPath: selectedAlbumUrl.path)
+                    for imageName in imagesName {
+                        filesToShare.append(selectedAlbumUrl.appendingPathComponent(imageName))
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+            let activityViewController = UIActivityViewController(activityItems: filesToShare, applicationActivities: nil)
+            self.present(activityViewController, animated: true, completion: nil)
+        }
     }
     
     @IBAction func renameBtnTapped(_ sender: UIButton) {
-        print("c")
+        var dataCollectionView = userDefault.stringArray(forKey: "listPhotosAlbum")
+        let selectedCells = collectionView.indexPathsForSelectedItems
+        if selectedCells?.count == 0 {
+            let alert = UIAlertController(title: "Please choose 1 Album to rename", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+        }
+        else if selectedCells!.count > 1 {
+            let alert = UIAlertController(title: "Please choose only 1 Album to rename", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+        }
+        else {
+            let selectedCell = selectedCells![0]
+            let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
+            let photosUrl = documentsUrl!.appendingPathComponent("Photos")
+            let oldFolderUrl = photosUrl.appendingPathComponent(dataCollectionView![selectedCell.row])
+            let alert = UIAlertController(title: "Enter the new name", message: nil, preferredStyle: .alert)
+            alert.addTextField()
+            alert.addAction(UIAlertAction(title: "Rename", style: .cancel, handler: { [weak alert] (_) in
+                let textField = alert?.textFields![0]
+                if textField?.text == "" {
+                    let alert = UIAlertController(title: "Error", message: "Please enter album name", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                    self.present(alert, animated: true)
+                    return
+                }
+                let newFolderUrl = photosUrl.appendingPathComponent(textField!.text!)
+                do {
+                    try self.fileManager.moveItem(at: oldFolderUrl, to: newFolderUrl)
+                } catch {
+                    print(error.localizedDescription)
+                }
+                dataCollectionView![selectedCell.row] = (textField?.text)!
+                self.userDefault.set(dataCollectionView, forKey: "listPhotosAlbum")
+                self.collectionView.reloadData()
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .destructive))
+            present(alert, animated: true)
+        }
     }
     
     @IBAction func createAlbumBtnTapped(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Create album", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Create album", message: nil, preferredStyle: .alert)
         alert.addTextField(){ (textfield) in
             textfield.placeholder = "Enter album name here"
         }

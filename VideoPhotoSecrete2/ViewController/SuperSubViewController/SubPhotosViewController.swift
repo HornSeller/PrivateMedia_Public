@@ -180,7 +180,7 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
         layout.minimumInteritemSpacing = margin
         var sizeCell = (view.frame.size.width - 4 * margin) / 3 - 2
         if UIDevice.current.userInterfaceIdiom == .pad {
-                        sizeCell = (view.frame.size.width - 5 * margin) / 4 - 2
+            sizeCell = (view.frame.size.width - 5 * margin) / 4 - 2
         }
 
         layout.itemSize = CGSize(width: sizeCell, height: sizeCell)
@@ -271,7 +271,15 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
     }
     
     @IBAction func shareBtnTapped(_ sender: UIButton) {
-        print("b")
+        var filesToShare: [Any] = []
+        if let selectedCell = collectionView.indexPathsForSelectedItems {
+            for indexPath in selectedCell.reversed() {
+                filesToShare.append((self.albumUrl?.appendingPathComponent(self.photosName[indexPath.row]))!)
+            }
+            
+            let activityViewController = UIActivityViewController(activityItems: filesToShare, applicationActivities: nil)
+            self.present(activityViewController, animated: true, completion: nil)
+        }
     }
     
     

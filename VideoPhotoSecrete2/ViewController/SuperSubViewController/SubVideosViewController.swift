@@ -262,6 +262,15 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     @IBAction func shareBtnTapped(_ sender: UIButton) {
+        var filesToShare: [Any] = []
+        if let selectedCell = collectionView.indexPathsForSelectedItems {
+            for indexPath in selectedCell.reversed() {
+                filesToShare.append((self.albumUrl?.appendingPathComponent(self.videosName[indexPath.row]))!)
+            }
+            
+            let activityViewController = UIActivityViewController(activityItems: filesToShare, applicationActivities: nil)
+            self.present(activityViewController, animated: true, completion: nil)
+        }
     }
     
     @objc func selectBtnTapped(_ sender: UIBarButtonItem) {

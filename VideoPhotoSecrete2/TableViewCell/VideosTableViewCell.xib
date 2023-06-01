@@ -36,7 +36,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5p-v3-97z">
-                        <rect key="frame" x="320" y="24" width="38" height="44"/>
+                        <rect key="frame" x="318" y="24" width="38" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" image="circle"/>
@@ -56,6 +56,6 @@
     </objects>
     <resources>
         <image name="2" width="90" height="77"/>
-        <image name="circle" width="16" height="16.333333969116211"/>
+        <image name="circle" width="24" height="24.333333969116211"/>
     </resources>
 </document>

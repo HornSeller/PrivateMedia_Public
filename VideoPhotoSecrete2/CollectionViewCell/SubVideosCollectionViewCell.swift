@@ -18,9 +18,9 @@ class SubVideosCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         imageView.layer.borderWidth = 0.1
-        imageView.layer.cornerRadius = 15
+        imageView.layer.cornerRadius = 9
         blurView.layer.borderWidth = 0.1
-        blurView.layer.cornerRadius = 15
+        blurView.layer.cornerRadius = 9
         subImageView.layer.borderWidth = 0.05
         subImageView.layer.cornerRadius = 5
     }

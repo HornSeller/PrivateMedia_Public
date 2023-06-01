@@ -38,7 +38,10 @@ class SubAudiosViewController: UIViewController, UITableViewDelegate, UITableVie
             }),
            
             UIAction(title: "Share", handler: { (_) in
-                print("c")
+                var fileToShare: [Any] = []
+                fileToShare.append(self.albumUrl?.appendingPathComponent(self.audiosName[indexPath.row]) as Any)
+                let activityViewController = UIActivityViewController(activityItems: fileToShare, applicationActivities: nil)
+                self.present(activityViewController, animated: true, completion: nil)
             })
             
         ])
