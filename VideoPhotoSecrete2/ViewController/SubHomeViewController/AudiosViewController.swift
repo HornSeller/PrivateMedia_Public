@@ -46,13 +46,21 @@ class AudiosViewController: UIViewController, UITableViewDataSource, UITableView
                 let oldFolderUrl = albumURL
                 let alert = UIAlertController(title: "Enter the new name", message: nil, preferredStyle: .alert)
                 alert.addTextField()
-                alert.addAction(UIAlertAction(title: "Rename", style: .cancel, handler: { [weak alert] (_) in
+                alert.addAction(UIAlertAction(title: "Rename", style: .default, handler: { [weak alert] (_) in
                     let textField = alert?.textFields![0]
                     if textField?.text == "" {
                         let alert = UIAlertController(title: "Error", message: "Please enter album name", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .cancel))
                         self.present(alert, animated: true)
                         return
+                    }
+                    for name in dataTable {
+                        if textField?.text == name {
+                            let alert = UIAlertController(title: "Error", message: "This name has existed", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                            self.present(alert, animated: true)
+                            return
+                        }
                     }
                     let newFolderUrl = audiosURL.appendingPathComponent(textField!.text!)
                     do {
@@ -65,7 +73,7 @@ class AudiosViewController: UIViewController, UITableViewDataSource, UITableView
                     self.userDefault.set(dataTable, forKey: "listAudiosAlbum")
                     self.tableView.reloadData()
                 }))
-                alert.addAction(UIAlertAction(title: "Cancel", style: .destructive))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                 self.present(alert, animated: true)
             }),
             
@@ -137,7 +145,7 @@ class AudiosViewController: UIViewController, UITableViewDataSource, UITableView
         alert.addTextField(){ (textfield) in
             textfield.placeholder = "Enter album name here"
         }
-        alert.addAction(UIAlertAction(title: "Create", style: .cancel, handler: { [weak alert] (_) in
+        alert.addAction(UIAlertAction(title: "Create", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]
             
             guard let fileNames = self.userDefault.stringArray(forKey: "listAudiosAlbum") else {
@@ -181,7 +189,7 @@ class AudiosViewController: UIViewController, UITableViewDataSource, UITableView
             
             self.tableView.reloadData()
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
         self.present(alert, animated: true)
     }

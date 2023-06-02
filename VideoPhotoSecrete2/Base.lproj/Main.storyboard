@@ -336,6 +336,30 @@
             </objects>
             <point key="canvasLocation" x="-3279.1999999999998" y="2981.5270935960593"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="eE3-iF-uEd">
+            <objects>
+                <viewController id="cP3-GD-cIb" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7QQ-eB-WjJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdP-MW-YHF">
+                                <rect key="frame" x="165" y="384" width="45" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0ZK-NR-08B"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KX0-7t-TwN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2994.4000000000001" y="3630.2955665024633"/>
+        </scene>
         <!--Sub Videos View Controller-->
         <scene sceneID="B7b-3u-sNN">
             <objects>
@@ -427,6 +451,7 @@
                         <outlet property="addFromGalleryBtn" destination="qDu-Hg-emZ" id="GJg-1I-Kdu"/>
                         <outlet property="collectionView" destination="hh7-uE-w27" id="d8i-5m-YEd"/>
                         <outlet property="deleteBtn" destination="bT1-5w-9Vb" id="BwA-7z-Dg5"/>
+                        <outlet property="myView" destination="lk5-5L-KCv" id="b57-9X-rTe"/>
                         <outlet property="shareBtn" destination="ocA-Ak-gAp" id="vp3-Nt-8Db"/>
                         <outlet property="takeVideoBtn" destination="bgw-JY-0ug" id="mSY-xa-P4A"/>
                         <outlet property="toolBarImgView" destination="exn-fj-JnF" id="QQp-nG-dCr"/>
@@ -1006,6 +1031,9 @@
         <image name="set up-3" width="288" height="108"/>
         <image name="setting" width="22" height="22"/>
         <image name="trash" catalog="system" width="117" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

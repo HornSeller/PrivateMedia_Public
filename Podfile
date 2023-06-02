@@ -9,5 +9,6 @@ target 'VideoPhotoSecrete2' do
 
 pod 'Kingfisher', '~> 7.0'
 pod 'PasscodeKit'
+pod 'NVActivityIndicatorView'
 
 end

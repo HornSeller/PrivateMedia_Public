@@ -251,7 +251,7 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
             }
             
             let alert = UIAlertController(title: "Do you really want to delete \(indexArr.count) Photo(s)?", message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Yes", style: .cancel, handler: { (_) in
+            alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (_) in
                 for index in indexArr {
                     do {
                         try self.fileManager.removeItem(at: (self.albumUrl?.appendingPathComponent(self.photosName[index]))!)
@@ -263,7 +263,7 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
                 }
             self.collectionView.reloadData()
             }))
-            alert.addAction(UIAlertAction(title: "No", style: .destructive))
+            alert.addAction(UIAlertAction(title: "No", style: .cancel))
             
             self.present(alert, animated: true)
             

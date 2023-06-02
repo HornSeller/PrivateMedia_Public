@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     

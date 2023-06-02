@@ -52,13 +52,21 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
                 let oldFolderUrl = folderURL
                 let alert = UIAlertController(title: "Enter the new name", message: nil, preferredStyle: .alert)
                 alert.addTextField()
-                alert.addAction(UIAlertAction(title: "Rename", style: .cancel, handler: { [weak alert] (_) in
+                alert.addAction(UIAlertAction(title: "Rename", style: .default, handler: { [weak alert] (_) in
                     let textField = alert?.textFields![0]
                     if textField?.text == "" {
                         let alert = UIAlertController(title: "Error", message: "Please enter album name", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .cancel))
                         self.present(alert, animated: true)
                         return
+                    }
+                    for name in dataTable {
+                        if textField?.text == name {
+                            let alert = UIAlertController(title: "Error", message: "This name has existed", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                            self.present(alert, animated: true)
+                            return
+                        }
                     }
                     let newFolderUrl = documentsURL!.appendingPathComponent(textField!.text!)
                     do {
@@ -72,7 +80,7 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
                     self.albumNameArray = self.userDefault.stringArray(forKey: "listDocumentsAlbum")!
                     self.tableView.reloadData()
                 }))
-                alert.addAction(UIAlertAction(title: "Cancel", style: .destructive))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                 self.present(alert, animated: true)
             }),
             
@@ -188,7 +196,7 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
         alert.addTextField(){ (textfield) in
             textfield.placeholder = "Enter album name here"
         }
-        alert.addAction(UIAlertAction(title: "Create", style: .cancel, handler: { [weak alert] (_) in
+        alert.addAction(UIAlertAction(title: "Create", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]
             
             guard let fileNames = self.userDefault.stringArray(forKey: "listDocumentsAlbum") else {
@@ -233,7 +241,7 @@ class DocumentsViewController: UIViewController, UITableViewDataSource, UITableV
             
             self.tableView.reloadData()
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
         self.present(alert, animated: true)
     }

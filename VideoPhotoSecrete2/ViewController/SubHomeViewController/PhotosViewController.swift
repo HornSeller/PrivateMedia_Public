@@ -208,7 +208,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
             }
             
             let alert = UIAlertController(title: "Do you really want to delete \(indexArr.count) Album(s)?", message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Yes", style: .cancel, handler: { (_) in
+            alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (_) in
                 for index in indexArr {
                     let albumUrl = photosURL.appendingPathComponent(dataCollectionView![index])
                     do {
@@ -222,7 +222,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
                 self.userDefault.setValue(dataCollectionView, forKey: "listPhotosAlbum")
                 self.collectionView.reloadData()
             }))
-            alert.addAction(UIAlertAction(title: "No", style: .destructive))
+            alert.addAction(UIAlertAction(title: "No", style: .cancel))
             
             self.present(alert, animated: true)
         }
@@ -255,7 +255,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     @IBAction func renameBtnTapped(_ sender: UIButton) {
-        var dataCollectionView = userDefault.stringArray(forKey: "listPhotosAlbum")
+        var dataCollectionView: [String] = userDefault.stringArray(forKey: "listPhotosAlbum")!
         let selectedCells = collectionView.indexPathsForSelectedItems
         if selectedCells?.count == 0 {
             let alert = UIAlertController(title: "Please choose 1 Album to rename", message: nil, preferredStyle: .alert)
@@ -271,10 +271,10 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
             let selectedCell = selectedCells![0]
             let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
             let photosUrl = documentsUrl!.appendingPathComponent("Photos")
-            let oldFolderUrl = photosUrl.appendingPathComponent(dataCollectionView![selectedCell.row])
+            let oldFolderUrl = photosUrl.appendingPathComponent(dataCollectionView[selectedCell.row])
             let alert = UIAlertController(title: "Enter the new name", message: nil, preferredStyle: .alert)
             alert.addTextField()
-            alert.addAction(UIAlertAction(title: "Rename", style: .cancel, handler: { [weak alert] (_) in
+            alert.addAction(UIAlertAction(title: "Rename", style: .default, handler: { [weak alert] (_) in
                 let textField = alert?.textFields![0]
                 if textField?.text == "" {
                     let alert = UIAlertController(title: "Error", message: "Please enter album name", preferredStyle: .alert)
@@ -282,17 +282,25 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
                     self.present(alert, animated: true)
                     return
                 }
+                for name in dataCollectionView {
+                    if textField?.text == name {
+                        let alert = UIAlertController(title: "Error", message: "This name has existed", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                        self.present(alert, animated: true)
+                        return
+                    }
+                }
                 let newFolderUrl = photosUrl.appendingPathComponent(textField!.text!)
                 do {
                     try self.fileManager.moveItem(at: oldFolderUrl, to: newFolderUrl)
                 } catch {
                     print(error.localizedDescription)
                 }
-                dataCollectionView![selectedCell.row] = (textField?.text)!
+                dataCollectionView[selectedCell.row] = (textField?.text)!
                 self.userDefault.set(dataCollectionView, forKey: "listPhotosAlbum")
                 self.collectionView.reloadData()
             }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: .destructive))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             present(alert, animated: true)
         }
     }
@@ -302,7 +310,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
         alert.addTextField(){ (textfield) in
             textfield.placeholder = "Enter album name here"
         }
-        alert.addAction(UIAlertAction(title: "Create", style: .cancel, handler: { [weak alert] (_) in
+        alert.addAction(UIAlertAction(title: "Create", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]
             
             guard let fileNames = self.userDefault.stringArray(forKey: "listPhotosAlbum") else {
@@ -353,7 +361,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
             
             self.collectionView.reloadData()
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
         self.present(alert, animated: true)
     }

@@ -13,12 +13,22 @@ import MobileCoreServices
 import PhotosUI
 
 class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, PHPickerViewControllerDelegate, UINavigationControllerDelegate {
+    let activityIndicatorView = UIActivityIndicatorView.init(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+    
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         var count = 0
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyyMMddHHmmss"
         
+        self.view.addSubview(activityIndicatorView)
+        activityIndicatorView.center = CGPoint.init(x: view.frame.size.width / 2, y: view.frame.size.height / 2)
+        activityIndicatorView.startAnimating()
+        var count2 = 0
         for result in results {
+            selectBarButton.isHidden = true
+            DispatchQueue.main.async {
+                self.view.isUserInteractionEnabled = false
+            }
             result.itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [self] url, error in
                 if let error = error {
                     // Xử lý lỗi
@@ -34,11 +44,20 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
                         let videoURL = albumUrl!.appendingPathComponent(name)
                         //let videoURLforImageFolder = imageForCellURL?.appendingPathComponent(name)
                         do {
+                            count2 += 1
+                            if count2 == results.count {
+                                DispatchQueue.main.async {
+                                    self.activityIndicatorView.stopAnimating()
+                                    self.view.isUserInteractionEnabled = true
+                                    self.selectBarButton.isHidden = false
+                                }
+                            }
                             try self.fileManager.moveItem(at: url, to: videoURL)
 //                            let image = generateThumbnail(path: videoURL)
 //                            if let imageData = image!.jpegData(compressionQuality: 1.0) {
 //                                try? imageData.write(to: videoURLforImageFolder!)
 //                            }
+                            
                             generateThumbnail(path: videoURL)
                             self.updateVideosName()
                             //self.updateListImage()
@@ -49,11 +68,12 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
                             print(error.localizedDescription)
                         }
                     }
+                   
                     count += 1
                 }
             }
         }
-        
+        //activityIndicatorView.stopAnimating()
         dismiss(animated: true)
     }
     
@@ -99,6 +119,7 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var takeVideoBtn: UIButton!
     @IBOutlet weak var addFromGalleryBtn: UIButton!
     @IBOutlet weak var toolBarImgView: UIImageView!
+    @IBOutlet weak var myView: UIView!
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -107,6 +128,10 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath) as! SubVideosCollectionViewCell
+        
+        if !ImageCache.default.isCached(forKey: (albumUrl?.appendingPathComponent(videosName[indexPath.row]).path)!) {
+            generateThumbnail(path: (albumUrl?.appendingPathComponent(videosName[indexPath.row]))!)
+        }
         
         ImageCache.default.retrieveImage(forKey: albumUrl?.appendingPathComponent(videosName[indexPath.row]).path ?? "", options: nil) { result in
             switch result {
@@ -199,6 +224,10 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
         layout.itemSize = CGSize(width: sizeCell, height: sizeCell)
         layout.sectionInset = UIEdgeInsets.init(top: margin, left: margin, bottom: margin, right: margin)
         collectionView.collectionViewLayout = layout
+        
+        activityIndicatorView.transform = CGAffineTransform(scaleX: 2, y: 2)
+        activityIndicatorView.color = .white
+        
         updateVideosName()
         //updateListImage()
     }
@@ -242,7 +271,7 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
             }
             
             let alert = UIAlertController(title: "Do you really want to delete \(indexArr.count) Video(s)?", message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Yes", style: .cancel, handler: { (_) in
+            alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (_) in
                 for index in indexArr {
                     do {
                         try self.fileManager.removeItem(at: (self.albumUrl?.appendingPathComponent(self.videosName[index]))!)
@@ -254,7 +283,7 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
                 }
             self.collectionView.reloadData()
             }))
-            alert.addAction(UIAlertAction(title: "No", style: .destructive))
+            alert.addAction(UIAlertAction(title: "No", style: .cancel))
             
             self.present(alert, animated: true)
             
