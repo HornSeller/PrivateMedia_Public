@@ -18,10 +18,11 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
         guard let documentUrl = self.fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
             return
         }
-        
+        var imageUrls: [Any] = []
         let photosURL = documentUrl.appendingPathComponent("Photos")
         let photosDirectory = photosURL.appendingPathComponent(self.name)
         for result in results {
+            
             // Kiểm tra xem đối tượng có phải là ảnh không
             if result.itemProvider.canLoadObject(ofClass: UIImage.self) {
                 // Tải ảnh
@@ -29,6 +30,8 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
                     if let error = error {
                         print("Error: \(error.localizedDescription)")
                     } else if let url = url {
+                        imageUrls.append(url)
+                        print(url)
                         let imageName = url.lastPathComponent
                         let components = imageName.components(separatedBy: ".")
                         if components.count > 1 {
@@ -48,12 +51,21 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
                             }
                         }
                         count += 1
+                        if (count == results.count) {
+                            PHPhotoLibrary.shared().performChanges({
+                                let imageAssetToDelete = PHAsset.fetchAssets(withALAssetURLs: imageUrls as! [URL], options: nil)
+                                PHAssetChangeRequest.deleteAssets(imageAssetToDelete)
+                            }, completionHandler: {success, error in
+                                print(success ? "Success" : error! )
+                            })
+                        }
                     }
                 }
             }
         }
         dismiss(animated: true)
     }
+    
     enum Mode {
         case view
         case select
@@ -201,6 +213,11 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
             self.updatePhotosName()
             self.collectionView.reloadData()
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        ImageCache.default.clearMemoryCache()
     }
     
     @objc func selectBtnTapped(_ sender: UIBarButtonItem) {

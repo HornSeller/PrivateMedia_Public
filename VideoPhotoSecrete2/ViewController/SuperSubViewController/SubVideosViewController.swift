@@ -165,7 +165,6 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
         case .select:
             break
         }
-        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -236,6 +235,11 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
         super.viewWillAppear(animated)
         updateVideosName()
         //updateListImage()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        ImageCache.default.clearMemoryCache()
     }
     
     @IBAction func addFromGalleryBtnTapped(_ sender: UIButton) {

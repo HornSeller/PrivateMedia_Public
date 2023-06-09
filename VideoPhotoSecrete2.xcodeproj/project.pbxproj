@@ -26,6 +26,7 @@
 		9A980EB82A0E279F00770531 /* SubVideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A980EB72A0E279F00770531 /* SubVideosViewController.swift */; };
 		9A980EBB2A0E295900770531 /* SubVideosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A980EB92A0E295900770531 /* SubVideosCollectionViewCell.swift */; };
 		9A980EBC2A0E295900770531 /* SubVideosCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A980EBA2A0E295900770531 /* SubVideosCollectionViewCell.xib */; };
+		9A9AF7432A301CA0007D2D5B /* CloudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9AF7422A301CA0007D2D5B /* CloudViewController.swift */; };
 		9A9E5EC82A0C8F2C008CBAD9 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E5EC62A0C8F2C008CBAD9 /* PhotosCollectionViewCell.swift */; };
 		9A9E5EC92A0C8F2C008CBAD9 /* PhotosCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9E5EC72A0C8F2C008CBAD9 /* PhotosCollectionViewCell.xib */; };
 		9A9E5ECC2A0CAB1F008CBAD9 /* SubPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E5ECB2A0CAB1F008CBAD9 /* SubPhotosViewController.swift */; };
@@ -67,6 +68,7 @@
 		9A980EB72A0E279F00770531 /* SubVideosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubVideosViewController.swift; sourceTree = "<group>"; };
 		9A980EB92A0E295900770531 /* SubVideosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubVideosCollectionViewCell.swift; sourceTree = "<group>"; };
 		9A980EBA2A0E295900770531 /* SubVideosCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubVideosCollectionViewCell.xib; sourceTree = "<group>"; };
+		9A9AF7422A301CA0007D2D5B /* CloudViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudViewController.swift; sourceTree = "<group>"; };
 		9A9E5EC62A0C8F2C008CBAD9 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		9A9E5EC72A0C8F2C008CBAD9 /* PhotosCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotosCollectionViewCell.xib; sourceTree = "<group>"; };
 		9A9E5ECB2A0CAB1F008CBAD9 /* SubPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubPhotosViewController.swift; sourceTree = "<group>"; };
@@ -81,7 +83,7 @@
 		9AA45B482A0B32FA007A2A18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AA45B4F2A0B3AAE007A2A18 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		9AA45B502A0B3AAE007A2A18 /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
-		9AA45B542A0B3C45007A2A18 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		9AA45B542A0B3C45007A2A18 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		9AA45B582A0B4A26007A2A18 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		9AA45B5A2A0B4A2E007A2A18 /* VideosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosViewController.swift; sourceTree = "<group>"; };
 		9AA45B5C2A0B4A38007A2A18 /* AudiosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudiosViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				9AA45B542A0B3C45007A2A18 /* HomeViewController.swift */,
 				9AA265C22A25F2CF00E84429 /* SettingViewController.swift */,
 				9AA265BE2A25998F00E84429 /* MoreViewController.swift */,
+				9A9AF7422A301CA0007D2D5B /* CloudViewController.swift */,
 			);
 			path = MenuViewController;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 			files = (
 				9A9E5ECC2A0CAB1F008CBAD9 /* SubPhotosViewController.swift in Sources */,
 				9A980EB82A0E279F00770531 /* SubVideosViewController.swift in Sources */,
+				9A9AF7432A301CA0007D2D5B /* CloudViewController.swift in Sources */,
 				9A980EB52A0DEF9900770531 /* VideosTableViewCell.swift in Sources */,
 				9AA45B5B2A0B4A2E007A2A18 /* VideosViewController.swift in Sources */,
 				9A95FD752A120A6700E22030 /* ShowImageViewController.swift in Sources */,

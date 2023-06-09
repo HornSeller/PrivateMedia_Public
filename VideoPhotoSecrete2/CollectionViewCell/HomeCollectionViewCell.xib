@@ -19,7 +19,7 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aqa-fl-tvD">
                         <rect key="frame" x="0.0" y="0.0" width="171" height="171"/>
-                        <color key="backgroundColor" white="0.046370110544217684" alpha="0.20260761589403972" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.70216783940397354" colorSpace="calibratedRGB"/>
                     </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yGa-iO-Gtd">
                         <rect key="frame" x="26" y="7" width="118" height="118"/>

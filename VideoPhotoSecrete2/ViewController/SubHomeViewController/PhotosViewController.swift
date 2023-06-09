@@ -7,18 +7,22 @@
 
 import UIKit
 import Kingfisher
+import GoogleMobileAds
 
-class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, GADBannerViewDelegate {
     @IBOutlet weak var toolBarImgView: UIImageView!
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var renameBtn: UIButton!
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var deleteBtn: UIButton!
+    
     enum Mode {
         case view
         case select
     }
+    
+    var bannerView: GADBannerView!
     var defaultValue = ["listPhotosAlbum": []]
     let userDefault = UserDefaults.standard
     
@@ -47,6 +51,51 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
                 renameBtn.isHidden = false
             }
         }
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+          [NSLayoutConstraint(item: bannerView,
+                              attribute: .bottom,
+                              relatedBy: .equal,
+                              toItem: view,
+                              attribute: .bottom,
+                              multiplier: 1,
+                              constant: -20),
+           NSLayoutConstraint(item: bannerView,
+                              attribute: .centerX,
+                              relatedBy: .equal,
+                              toItem: view,
+                              attribute: .centerX,
+                              multiplier: 1,
+                              constant: 0)
+          ])
+       }
+    
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+        addBannerViewToView(bannerView)
+    }
+
+    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+      print("bannerView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+
+    func bannerViewDidRecordImpression(_ bannerView: GADBannerView) {
+      print("bannerViewDidRecordImpression")
+    }
+
+    func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
+      print("bannerViewWillPresentScreen")
+    }
+
+    func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
+      print("bannerViewWillDIsmissScreen")
+    }
+
+    func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
+      print("bannerViewDidDismissScreen")
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -98,6 +147,16 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         //userDefault.removeObject(forKey: "listPhotosAlbum")
+        let adSize = GADAdSizeFromCGSize(CGSize(width: view.frame.width, height: 55))
+        bannerView = GADBannerView(adSize: adSize)
+        bannerView.delegate = self
+        addBannerViewToView(bannerView)
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.backgroundColor = UIColor(red: 41/255, green: 41/255, blue: 41/255, alpha: 1)
+        bannerView.layer.borderWidth = 5.0
+        bannerView.layer.borderColor = CGColor(red: 41/255, green: 41/255, blue: 41/255, alpha: 1)
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
         
         selectBarButton = {
             let barButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(selectBtnTapped(_:)))
@@ -156,24 +215,6 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
         mMode = mMode == .view ? .select : .view
         collectionView.reloadData()
     }
-    
-//    @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
-//        if gestureRecognizer.state == .began {
-//            guard let cell = gestureRecognizer.view as? PhotosCollectionViewCell else {
-//                return
-//            }
-//            let touchPoint = gestureRecognizer.location(in: collectionView)
-//
-//            // Tìm indexPath của ô (cell) tại điểm chạm
-//            if let indexPath = collectionView.indexPathForItem(at: touchPoint) {
-//                if let cell = collectionView.cellForItem(at: indexPath) as? PhotosCollectionViewCell {
-//                    cell.isSelected = true
-//                    cell.backgroundColor = .red
-//                }
-//            }
-//            collectionView.allowsMultipleSelection = true
-//        }
-//    }
     
     func toggleSelectionForCell(at indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? PhotosCollectionViewCell {
