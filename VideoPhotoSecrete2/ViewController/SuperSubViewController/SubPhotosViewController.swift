@@ -8,6 +8,7 @@
 import UIKit
 import PhotosUI
 import Kingfisher
+import Photos
 
 class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
@@ -52,18 +53,44 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
                         }
                         count += 1
                         if (count == results.count) {
+                            let identifiers = results.compactMap(\.assetIdentifier)
+                            let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: nil)
                             PHPhotoLibrary.shared().performChanges({
-                                let imageAssetToDelete = PHAsset.fetchAssets(withALAssetURLs: imageUrls as! [URL], options: nil)
-                                PHAssetChangeRequest.deleteAssets(imageAssetToDelete)
-                            }, completionHandler: {success, error in
-                                print(success ? "Success" : error! )
-                            })
+                                PHAssetChangeRequest.deleteAssets(fetchResult)
+                            }) { success, error in
+                                if success {
+                                    // Photo was successfully removed
+                                } else {
+                                    // Error occurred while removing the photo
+                                }
+                            }
                         }
                     }
                 }
             }
         }
         dismiss(animated: true)
+    }
+    
+    func removePhotoFromLibrary(with assetIdentifier: String) {
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.predicate = NSPredicate(format: "localIdentifier = %@", assetIdentifier)
+        
+        let fetchResult = PHAsset.fetchAssets(with: fetchOptions)
+        
+        if let asset = fetchResult.firstObject {
+            PHPhotoLibrary.shared().performChanges({
+                PHAssetChangeRequest.deleteAssets([asset] as NSArray)
+            }) { success, error in
+                if success {
+                    // Photo was successfully removed
+                } else {
+                    // Error occurred while removing the photo
+                }
+            }
+        } else {
+            // Photo asset not found
+        }
     }
     
     enum Mode {
@@ -203,7 +230,14 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
         navigationItem.leftBarButtonItem = leftBarButton
         navigationItem.leftBarButtonItem?.tintColor = .white
         
-        updatePhotosName();
+        updatePhotosName()
+        PHPhotoLibrary.requestAuthorization { status in
+            if status == .authorized {
+                // User has granted access to the photo library
+            } else {
+                // User has denied or restricted access to the photo library
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -301,7 +335,8 @@ class SubPhotosViewController: UIViewController, UICollectionViewDelegateFlowLay
     
     
     @IBAction func addFromGalleryBtnTapped(_ sender: UIButton) {
-        var config = PHPickerConfiguration()
+        let photoLibrary = PHPhotoLibrary.shared()
+        var config = PHPickerConfiguration(photoLibrary: photoLibrary)
         config.selectionLimit = 0
         config.filter = .images
         

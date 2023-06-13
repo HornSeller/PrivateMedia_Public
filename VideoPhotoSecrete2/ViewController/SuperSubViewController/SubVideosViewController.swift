@@ -50,6 +50,17 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
                                     self.activityIndicatorView.stopAnimating()
                                     self.view.isUserInteractionEnabled = true
                                     self.selectBarButton.isHidden = false
+                                    let identifiers = results.compactMap(\.assetIdentifier)
+                                    let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: nil)
+                                    PHPhotoLibrary.shared().performChanges({
+                                        PHAssetChangeRequest.deleteAssets(fetchResult)
+                                    }) { success, error in
+                                        if success {
+                                            // Photo was successfully removed
+                                        } else {
+                                            // Error occurred while removing the photo
+                                        }
+                                    }
                                 }
                             }
                             try self.fileManager.moveItem(at: url, to: videoURL)
@@ -68,7 +79,6 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
                             print(error.localizedDescription)
                         }
                     }
-                   
                     count += 1
                 }
             }
@@ -243,7 +253,8 @@ class SubVideosViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     @IBAction func addFromGalleryBtnTapped(_ sender: UIButton) {
-        var configuration = PHPickerConfiguration()
+        let photoLibrary = PHPhotoLibrary.shared()
+        var configuration = PHPickerConfiguration(photoLibrary: photoLibrary)
         configuration.filter = .videos
         configuration.selectionLimit = 0 // Chọn 0 để cho phép chọn nhiều video
                 

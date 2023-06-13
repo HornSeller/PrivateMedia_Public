@@ -153,7 +153,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
         addBannerViewToView(bannerView)
         bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView.backgroundColor = UIColor(red: 41/255, green: 41/255, blue: 41/255, alpha: 1)
-        bannerView.layer.borderWidth = 5.0
+        bannerView.layer.borderWidth = 2.0
         bannerView.layer.borderColor = CGColor(red: 41/255, green: 41/255, blue: 41/255, alpha: 1)
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
